@@ -18,25 +18,27 @@
           %a.navbar-brand
             Home BookKeeper
 
-        #navbarCollapse.collapse.navbar-collapse
-          %ul.nav.navbar-nav
-            %li{class: ("active" if current_page?(dashboard_path)) }
-              =link_to "Dashboard", dashboard_path
-            %li{class: ("active" if current_page?(transactions_path)) }
-              = link_to "Transactions", transactions_path
-            %li{class: ("active" if current_page?(accounts_path)) }
-              =link_to "Accounts", accounts_path
-            %li{class: ("active" if current_page?(categories_path)) }
-              =link_to "Categories", categories_path
-          %ul.nav.navbar-nav.navbar-right
-            %li
-              %a Settings
-            %li
-              %a About
+        - if user_signed_in?
+          #navbarCollapse.collapse.navbar-collapse
+            %ul.nav.navbar-nav
+              %li{class: ("active" if current_page?(dashboard_path)) }
+                =link_to "Dashboard", dashboard_path
+              %li{class: ("active" if current_page?(transactions_path)) }
+                = link_to "Transactions", transactions_path
+              %li{class: ("active" if current_page?(accounts_path)) }
+                =link_to "Accounts", accounts_path
+              %li{class: ("active" if current_page?(categories_path)) }
+                =link_to "Categories", categories_path
+            %ul.nav.navbar-nav.navbar-right
+              %li
+                %a Settings
+              %li
+                =link_to "Logout", destroy_user_session_path, method: :delete
+        - else
+          #navbarCollapse.collapse.navbar-collapse
+            %ul.nav.navbar-nav
+              %li{class: ("active" if current_page?(dashboard_path)) }
+                =link_to "Login", new_user_session_path
     .container
-      .row
-        #alert.alert-info
-          = content_tag(:div, flash[:notice]) if flash[:notice]
-        #alert.alert-danger
-          = content_tag(:div, flash[:alert]) if flash[:alert]
+      = flash_messages
       = yield

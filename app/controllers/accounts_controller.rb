@@ -1,8 +1,8 @@
 class AccountsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
-    @accounts = Account.all
+    @accounts = current_user.accounts.all
   end
 
   def new
@@ -10,13 +10,12 @@ class AccountsController < ApplicationController
   end
 
   def create
-    @account = Account.new
-    @account.update_attributes(permitted_params)
+    @account = current_user.accounts.new(permitted_params)
     if @account.valid?
       @account.save
       redirect_to accounts_path, notice: "Account successfully created"
     else
-      flash[:alert] = "Account doesn't created"
+      flash[:error] = "Account doesn't created"
       render "new"
     end
   end
