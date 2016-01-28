@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Bookkeeping
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %nav.navbar.navbar-default
+      .container
+        .navbar-header
+          %button.navbar-toggle.collapsed{:type => "button", "data-toggle" => "collapse", "data-target" => "#navbarCollapse",  "aria-expanded" => "false"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand
+            Home BookKeeper
+
+        #navbarCollapse.collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            %li.active
+              %a{:href => "#"} Dashboard
+            %li
+              %a Transactions
+            %li
+              %a Budget
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              %a Settings
+            %li
+              %a About
+    .container
+      = yield
