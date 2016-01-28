@@ -1,0 +1,19 @@
+%table.table
+  %tr
+    %th
+      Category name
+    %th
+      Funds
+    %th
+      Actions
+  - @categories.each do |category|
+    %tr
+      %td
+        = category.name
+      %td
+        = number_to_currency(category.funds)
+      %td
+        = link_to 'Edit', edit_category_path(category.id)
+        = link_to 'Delete', category_path(category.id), method: :delete
+
+= link_to 'Create category', new_category_path

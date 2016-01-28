@@ -1,0 +1,19 @@
+%table.table
+  %tr
+    %th
+      Account name
+    %th
+      Funds
+    %th
+      Actions
+  - @accounts.each do |account|
+    %tr
+      %td
+        = account.name
+      %td
+        = number_to_currency(account.funds)
+      %td
+        = link_to 'Edit', edit_account_path(account.id)
+        = link_to 'Delete', account_path(account.id), method: :delete
+
+= link_to 'Create account', new_account_path

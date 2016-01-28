@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  get 'transactions/index'
+  get 'dashboard/index', :as => 'dashboard'
 
-  root 'transactions#index'
+  get 'transactions/index', :as => 'transactions'
+
+  resources :accounts
+  resources :categories
+
+  root 'dashboard#index'
 end

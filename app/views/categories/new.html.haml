@@ -1,0 +1,9 @@
+= form_for @category do |f|
+  .form-group
+    = f.label 'Category Name'
+    = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label 'Amount'
+    = f.text_field :funds, class: "form-control"
+  .form-group
+    = f.submit class: "btn btn-default"
