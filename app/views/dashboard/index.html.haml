@@ -1,2 +1,7 @@
-%h1 Dashboard#index
-%p Find me in app/views/dashboard/index.html.haml
+- unless user_signed_in?
+  %h1 Dashboard#index
+  %p Find me in app/views/dashboard/index.html.haml
+- else
+  %h3
+    Hello
+    = current_user.email
