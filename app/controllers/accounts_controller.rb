@@ -21,7 +21,7 @@ class AccountsController < ApplicationController
   end
 
   def destroy
-    @account = Account.find_by_id(params[:id])
+    @account = current_user.accounts.find_by_id(params[:id])
     @account.destroy
     redirect_to accounts_path, notice: "Account successfully deleted"
   end

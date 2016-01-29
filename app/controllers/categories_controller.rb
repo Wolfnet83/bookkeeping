@@ -1,8 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
-    @categories = Category.all
+    @categories = current_user.categories.all
   end
 
   def new
@@ -10,8 +10,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new
-    @category.update_attributes(permitted_params)
+    @category = current_user.categories.new(permitted_params)
     if @category.valid?
       @category.save
       redirect_to categories_path, notice: "Category successfully created"
@@ -22,7 +21,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find_by_id(params[:id])
+    @category = current_user.categories.find_by_id(params[:id])
     @category.destroy
     redirect_to categories_path, notice: "Category successfully deleted"
   end
