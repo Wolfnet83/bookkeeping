@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
 
   has_many :accounts
   has_many :categories
+  has_many :transactions
 end

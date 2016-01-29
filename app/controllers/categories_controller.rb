@@ -11,6 +11,8 @@ class CategoriesController < ApplicationController
 
   def create
     @category = current_user.categories.new(permitted_params)
+    binding.pry
+    params[:category][:category_type] == '1' ? @category.category_type = INCOME : @category.category_type = EXPENSE
     if @category.valid?
       @category.save
       redirect_to categories_path, notice: "Category successfully created"

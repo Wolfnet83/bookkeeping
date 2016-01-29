@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'dashboard/index', :as => 'dashboard'
 
-  get 'transactions/index', :as => 'transactions'
-
+  resources :transactions
   resources :accounts
   resources :categories
 

@@ -1,2 +1,27 @@
-%h1 Transactions#index
-%p Find me in app/views/transactions/index.html.haml
+%%table.table
+  %tr
+    %th
+      Date
+    %th
+      Account
+    %th
+      Category
+    %th
+      Amount
+    %th
+      Comment
+  - @transactions.each do |transaction|
+    %tr
+      %td
+        = time_tag(transaction.created_at)
+      %td
+        = transaction.account.name
+      %td
+        = transaction.category.name
+      %td
+        = transaction.amount
+      %td
+        = link_to 'Edit', edit_transaction_path(transaction.id)
+        = link_to 'Delete', transaction_path(transaction.id), method: :delete
+
+= link_to 'Create transaction', new_transaction_path

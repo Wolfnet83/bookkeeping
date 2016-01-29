@@ -1,0 +1,12 @@
+= form_for @transaction do |f|
+  .form-group
+    = f.label 'From Account'
+    = f.select "account_id", @accounts.map {|a| [a.name, a.id]}
+  .form-group
+    = f.label 'To Category'
+    = f.select "category_id", @categories.map {|c| [c.name, c.id]}
+  .form-group
+    = f.label 'Amount'
+    = f.text_field :amount, class: "form-control"
+  .form-group
+    = f.submit class: "btn btn-default"

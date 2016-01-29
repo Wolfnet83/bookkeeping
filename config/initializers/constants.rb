@@ -1,0 +1,4 @@
+CATEGORY_TYPES = [
+  INCOME = '1',
+  EXPENSE = '0'
+]
