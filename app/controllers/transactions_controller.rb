@@ -32,9 +32,9 @@ class TransactionsController < ApplicationController
     @transaction.destroy
     redirect_to transactions_path, notice: "Category successfully deleted"
   end
-  private
 
+  private
   def permitted_params
-    params[:transaction].permit(:account_id, :category_id, :amount)
+    params[:transaction].permit(:account_id, :category_id, :amount, :comment)
   end
 end
