@@ -1,0 +1,37 @@
+%nav.navbar.navbar-default
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{:type => "button", "data-toggle" => "collapse", "data-target" => "#navbarCollapse",  "aria-expanded" => "false"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand
+        Home BookKeeper
+
+    - if user_signed_in?
+      #navbarCollapse.collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %li{class: ("active" if current_page?(dashboard_path)) }
+            =link_to "Dashboard", dashboard_path
+          %li{class: ("active" if current_page?(transactions_path)) }
+            = link_to "Transactions", transactions_path
+        %ul.nav.navbar-nav.navbar-right
+          %li.dropdown{class: ("active" if current_page?(accounts_path)||current_page?(categories_path)) }
+            %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown",
+                               role: "button", "aria-haspopup" => "true",
+                               "aria-expanded" => "false"}
+              Settings
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                =link_to "Accounts", accounts_path
+              %li
+                =link_to "Categories", categories_path
+          %li
+            =link_to "Logout", destroy_user_session_path, method: :delete
+    - else
+      #navbarCollapse.collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %li{class: ("active" if current_page?(dashboard_path)) }
+            =link_to "Login", new_user_session_path

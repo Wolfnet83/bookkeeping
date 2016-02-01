@@ -7,11 +7,11 @@
     %th
       Actions
   - @categories.each do |category|
-    %tr
+    %tr{class: (category.income? ? "success" : "danger") }
       %td
         = category.name
       %td
-        = number_to_currency(category.funds)
+        = number_to_currency(category.funds,{unit: "MDL"})
       %td
         = link_to 'Edit', edit_category_path(category.id)
         = link_to 'Delete', category_path(category.id), method: :delete

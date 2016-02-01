@@ -10,10 +10,10 @@ class Transaction < ActiveRecord::Base
   after_destroy :affect_to_accounts_after_deletion
 
   def affect_to_accounts_after_creation
-    account.minus(amount)
+    category.income? ? account.plus(amount) : account.minus(amount)
   end
 
   def affect_to_accounts_after_deletion
-    account.plus(amount)
+    category.income? ? account.minus(amount) : account.plus(amount)
   end
 end
