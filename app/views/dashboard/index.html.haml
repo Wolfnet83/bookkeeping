@@ -1,7 +1,9 @@
-- unless user_signed_in?
-  %h1 Dashboard#index
-  %p Find me in app/views/dashboard/index.html.haml
-- else
-  %h3
-    Hello
-    = current_user.email
+.col-md-4.col-md-offset-4
+  - unless user_signed_in?
+    %h3 You should login before action
+  - else
+    %h3
+      Hello
+      = current_user.email
+    %p
+      Welcome to your personal dashboard
