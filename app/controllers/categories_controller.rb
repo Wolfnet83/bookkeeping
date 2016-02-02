@@ -21,6 +21,20 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def edit
+    @category = current_user.categories.find_by_id(params[:id])
+  end
+
+  def update
+    @category = current_user.categories.find_by_id(params[:id])
+    if @category.update_attributes(permitted_params)
+      redirect_to categories_path, notice: "Category successfully updated"
+    else
+      flash[:alert] = "Category doesn't updated"
+      render 'edit'
+    end
+  end
+
   def destroy
     @category = current_user.categories.find_by_id(params[:id])
     @category.destroy
@@ -29,6 +43,6 @@ class CategoriesController < ApplicationController
 
   private
   def permitted_params
-    params[:category].permit(:name, :funds)
+    params[:category].permit(:name, :category_type)
   end
 end
