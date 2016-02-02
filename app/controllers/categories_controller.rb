@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @categories = current_user.categories.all
+    @categories = current_user.categories.order(category_type: :desc)
   end
 
   def new

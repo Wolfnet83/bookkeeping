@@ -1,5 +1,6 @@
 class Account < ActiveRecord::Base
   validates :name, presence: true
+  validates :funds, numericality: true
 
   has_many :transactions, dependent: :destroy
 

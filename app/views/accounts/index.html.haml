@@ -13,7 +13,7 @@
       %td
         = number_to_currency(account.funds, unit: "MDL ")
       %td
-        = link_to 'Edit', edit_account_path(account.id)
-        = link_to 'Delete', account_path(account.id), method: :delete
+        = link_to 'Edit', edit_account_path(account.id), class: "btn btn-xs btn-default"
+        = link_to 'Delete', account_path(account.id), method: :delete, class: "btn btn-xs btn-danger"
 
-= link_to 'Create account', new_account_path
+= link_to 'Create account', new_account_path, class: "btn btn-default"

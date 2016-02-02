@@ -9,7 +9,7 @@
       %td
         = category.name
       %td
-        = link_to 'Edit', edit_category_path(category.id)
-        = link_to 'Delete', category_path(category.id), method: :delete
+        = link_to 'Edit', edit_category_path(category.id), class: "btn btn-xs btn-default"
+        = link_to 'Delete', category_path(category.id), method: :delete, class: "btn btn-xs btn-danger"
 
-= link_to 'Create category', new_category_path
+= link_to 'Create category', new_category_path, class: "btn btn-default"

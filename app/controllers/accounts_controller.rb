@@ -20,6 +20,20 @@ class AccountsController < ApplicationController
     end
   end
 
+  def edit
+    @account = current_user.accounts.find_by_id(params[:id])
+  end
+
+  def update
+    @account = current_user.accounts.find_by_id(params[:id])
+    if @account.update_attributes(permitted_params)
+      redirect_to accounts_path, notice: "Account updated successfully"
+    else
+      flash[:error] = "Account doesn't updated"
+      render "edit"
+    end
+  end
+
   def destroy
     @account = current_user.accounts.find_by_id(params[:id])
     @account.destroy
