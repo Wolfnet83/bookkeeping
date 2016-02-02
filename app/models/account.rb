@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
   validates :name, presence: true
 
-  has_many :transactions
+  has_many :transactions, dependent: :destroy
 
   def plus(amount)
     amount ||= 0
