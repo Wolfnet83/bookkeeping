@@ -40,6 +40,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-rails'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
+  gem 'faker', '~> 1.6', '>= 1.6.1'
 end
 
 group :development do

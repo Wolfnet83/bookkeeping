@@ -27,9 +27,8 @@
           %td
             = transaction.comment
           %td
-            = link_to 'Edit', edit_transaction_path(transaction.id)
-            = link_to 'Delete', transaction_path(transaction.id), method: :delete
+            = link_to 'Edit', edit_transaction_path(transaction.id), class: "btn btn-xs btn-default"
+            = link_to 'Delete', transaction_path(transaction.id), method: :delete, class: "btn btn-xs btn-danger"
 .row
-  .col-md-2.col-md-offset-10
-    = link_to new_transaction_path, {class: "btn btn-primary"} do
-      %span.glyphicon.glyphicon-plus
+  .col-md-12
+    = link_to "Create Transaction", new_transaction_path, {class: "btn btn-default"}
