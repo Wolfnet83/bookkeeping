@@ -17,7 +17,7 @@
       - @transactions.each do |transaction|
         %tr
           %td
-            = time_tag(transaction.created_at)
+            = time_tag(transaction.created_at.to_date)
           %td
             = transaction.account.name
           %td
