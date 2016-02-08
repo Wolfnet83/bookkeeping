@@ -12,26 +12,29 @@
     - if user_signed_in?
       #navbarCollapse.collapse.navbar-collapse
         %ul.nav.navbar-nav
-          %li{class: ("active" if current_page?(dashboard_path)) }
-            =link_to "Dashboard", dashboard_path
+          -# %li{class: ("active" if current_page?(dashboard_path)) }
+          -#   =link_to "Dashboard", dashboard_path
           %li{class: ("active" if current_page?(transactions_path)) }
-            = link_to "Transactions", transactions_path
+            = link_to t('transaction.transactions'), transactions_path
         %ul.nav.navbar-nav.navbar-right
           %li.dropdown{class: ("active" if current_page?(accounts_path)||current_page?(categories_path)) }
             %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown",
                                role: "button", "aria-haspopup" => "true",
                                "aria-expanded" => "false"}
-              Settings
+              = t('common.settings')
               %span.caret
             %ul.dropdown-menu
               %li
-                =link_to "Accounts", accounts_path
+                =link_to t('account.accounts'), accounts_path
               %li
-                =link_to "Categories", categories_path
+                =link_to t('category.categories'), categories_path
+              %li.divider{role: "separator"}
+              %li
+                =link_to t('user.profile'), current_user
           %li
-            =link_to "Logout", destroy_user_session_path, method: :delete
+            =link_to t('common.logout'), destroy_user_session_path, method: :delete
     - else
       #navbarCollapse.collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-right
           %li{class: ("active" if current_page?(dashboard_path)) }
-            =link_to "Login", new_user_session_path
+            =link_to t('common.login'), new_user_session_path

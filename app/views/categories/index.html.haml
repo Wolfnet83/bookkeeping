@@ -1,15 +1,17 @@
 %table.table
   %tr
     %th
-      Category name
+      = t("category.name")
     %th
-      Actions
+      = t("common.actions")
   - @categories.each do |category|
     %tr{class: (category.income? ? "success" : "danger") }
       %td
         = category.name
       %td
-        = link_to 'Edit', edit_category_path(category.id), class: "btn btn-xs btn-default"
-        = link_to 'Delete', category_path(category.id), method: :delete, class: "btn btn-xs btn-danger"
+        = link_to t('common.edit'), edit_category_path(category.id), class: "btn btn-xs btn-default"
+        = link_to t('common.delete'), category_path(category.id),
+                  method: :delete, class: "btn btn-xs btn-danger",
+                  data: {confirm: t('common.sure')}
 
 = link_to 'Create category', new_category_path, class: "btn btn-default"

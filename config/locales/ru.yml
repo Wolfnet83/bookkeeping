@@ -1,0 +1,34 @@
+ru:
+  account:
+    account: "Счет"
+    accounts: "Счета"
+    name: "Наименование счета"
+    initial_amount: 'Начальная сумма'
+    funds: 'Остаток'
+  category:
+    category: "Категория"
+    categories: "Категории"
+    name: "Наименование категории"
+  transaction:
+    transactions: "Проводки"
+    comment: "Комментарий"
+    amount: "Сумма"
+  date:
+    formats:
+      long: "%B %d, %Y"
+    month_names: [~, Январь, Февраль, Март, Апрель, Маи, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь]
+    abbr_month_names: [~, Янв, Фев, Мар, Апр, Маи, Июн, Июл, Авг, Сен, Окт, Ноя, Дек]
+    order: "Порядок"
+  user:
+    profile: "Профиль"
+  common:
+    date: "Дата"
+    settings: "Настройки"
+    actions: "Действия"
+    create: "Создать"
+    cancel: "Отмена"
+    edit: "Изменить"
+    delete: "Удалить"
+    sure: "Уверены?"
+    login: "Вход"
+    logout: "Выход"

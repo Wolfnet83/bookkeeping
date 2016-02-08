@@ -1,11 +1,11 @@
 %table.table
   %tr
     %th
-      Account name
+      = t('account.name')
     %th
-      Funds
+      = t('account.funds')
     %th
-      Actions
+      = t('common.actions')
   - @accounts.each do |account|
     %tr
       %td
@@ -13,7 +13,10 @@
       %td
         = number_to_currency(account.funds, unit: "MDL ")
       %td
-        = link_to 'Edit', edit_account_path(account.id), class: "btn btn-xs btn-default"
-        = link_to 'Delete', account_path(account.id), method: :delete, class: "btn btn-xs btn-danger"
+        = link_to t('common.edit'), edit_account_path(account.id),
+                                    class: "btn btn-xs btn-default"
+        = link_to t('common.delete'), account_path(account.id),
+                            method: :delete, class: "btn btn-xs btn-danger",
+                            data: {confirm: t('common.sure')}
 
 = link_to 'Create account', new_account_path, class: "btn btn-default"

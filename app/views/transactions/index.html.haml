@@ -3,17 +3,17 @@
     %table.table
       %tr
         %th
-          Date
+          = t('common.date')
         %th
-          Account
+          = t('account.account')
         %th
-          Category
+          = t('category.category')
         %th
-          Amount
+          = t('transaction.amount')
         %th
-          Comment
+          = t('transaction.comment')
         %th
-          Actions
+          = t('common.actions')
       - @transactions.each do |transaction|
         %tr
           %td
@@ -27,8 +27,11 @@
           %td
             = transaction.comment
           %td
-            = link_to 'Edit', edit_transaction_path(transaction.id), class: "btn btn-xs btn-default"
-            = link_to 'Delete', transaction_path(transaction.id), method: :delete, class: "btn btn-xs btn-danger"
+            = link_to t('common.edit'), edit_transaction_path(transaction.id),
+                                      class: "btn btn-xs btn-default"
+            = link_to t('common.delete'), transaction_path(transaction.id),
+                                method: :delete, class: "btn btn-xs btn-danger",
+                                data: { confirm: t('common.sure')}
 .row
   .col-md-12
     = link_to "Create Transaction", new_transaction_path, {class: "btn btn-default"}

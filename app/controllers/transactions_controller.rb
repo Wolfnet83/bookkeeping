@@ -35,6 +35,6 @@ class TransactionsController < ApplicationController
 
   private
   def permitted_params
-    params[:transaction].permit(:account_id, :category_id, :amount, :comment)
+    params[:transaction].permit(:account_id, :category_id, :amount, :comment, :created_at)
   end
 end

@@ -1,24 +1,30 @@
-= form_for @transaction, html: {class: "form-horizontal"} do |f|
+= simple_form_for @transaction, html: {class: "form-horizontal"} do |f|
   .form-group
     .col-sm-2
-      = f.label :account_id, 'Account'
-    .col-sm-10
-      = f.select "account_id", @accounts.map {|a| [a.name, a.id]}, {}, { class: "form-control"}
+      = f.label :date, t('common.date')
+    .col-sm-8
+      = f.input :created_at, label: false, as: :date,
+                 order: [:day, :month, :year], class: "form-control"
   .form-group
     .col-sm-2
-      = f.label :category_id, 'Category'
-    .col-sm-10
-      = f.select "category_id", @categories.map {|c| [c.name, c.id]}, {}, { class: "form-control" }
+      = f.label :account_id, t('account.account')
+    .col-sm-8
+      = f.association :account, label: false, include_blank: false
   .form-group
     .col-sm-2
-      = f.label :amount, 'Amount'
-    .col-sm-10
-      = f.text_field :amount, class: "form-control"
+      = f.label :category_id, t('category.category')
+    .col-sm-8
+      = f.association :category, label: false, include_blank: false
   .form-group
     .col-sm-2
-      = f.label 'Comment'
-    .col-sm-10
-      = f.text_field :comment, class: "form-control"
+      = f.label :amount, t('transaction.amount')
+    .col-sm-8
+      = f.input :amount, as: :decimal, label: false
   .form-group
     .col-sm-2
-      = f.submit class: "btn btn-default"
+      = f.label :comment, t('transaction.comment')
+    .col-sm-8
+      = f.input :comment, label: false
+  .form-group
+    .col-sm-2
+      = f.button :submit, t('common.create')
