@@ -8,6 +8,20 @@ class TransactionsController < ApplicationController
   def show
   end
 
+  def edit
+    @transaction = current_user.transactions.find_by_id(params[:id])
+  end
+
+  def update
+    @transaction = current_user.transactions.find_by_id(params[:id])
+    if @transaction.update_attributes(permitted_params)
+      redirect_to transactions_path, notice: "Transaction updated successfully"
+    else
+      flash[:error] = "Transaction doesn't updated"
+      render "edit"
+    end
+  end
+
   def new
     @transaction = Transaction.new
     @categories  = current_user.categories.all
