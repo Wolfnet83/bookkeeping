@@ -3,7 +3,8 @@
     %table.table
       %tr
         %th
-          = t('common.date')
+          = link_to t('common.date'), transactions_path(sort_by: "created_at",
+                                      dir: ("desc" unless params[:dir].present?))
         %th
           = t('account.account')
         %th

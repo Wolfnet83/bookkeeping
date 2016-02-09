@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @transactions = current_user.transactions.all
+    @transactions = current_user.transactions.order("#{params[:sort_by]} #{params[:dir]}")
   end
 
   def show
