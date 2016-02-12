@@ -1,16 +1,16 @@
+= render 'filter_form'
 .row
   .col-md-10
-    %table.table
+    %table.table.table-striped
       %tr
         %th
-          = link_to t('common.date'), transactions_path(sort_by: "created_at",
-                                      dir: ("desc" unless params[:dir].present?))
+          = sortable 'created_at', t('common.date')
         %th
-          = t('account.account')
+          = sortable 'account_id', t('account.account')
         %th
-          = t('category.category')
+          = sortable 'category_id', t('category.category')
         %th
-          = t('transaction.amount')
+          = sortable 'amount', t('transaction.amount')
         %th
           = t('transaction.comment')
         %th

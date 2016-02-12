@@ -9,6 +9,8 @@ class Transaction < ActiveRecord::Base
   after_create :affect_to_accounts_after_creation
   after_destroy :affect_to_accounts_after_deletion
 
+  scope :in_current_month, -> { where(created_at: Date.today.beginning_of_month..Date.today.end_of_month)}
+
   def affect_to_accounts_after_creation
     category.income? ? account.plus(amount) : account.minus(amount)
   end

@@ -1,8 +1,18 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
+  helper_method :sort_column, :sort_direction
 
   def index
-    @transactions = current_user.transactions.order("#{params[:sort_by]} #{params[:dir]}")
+    if params[:filter].blank?
+      @transactions = current_user.transactions.in_current_month.order(sort_column + ' ' + sort_direction)
+    else
+      date = "#{params[:date][:month]}/#{params[:date][:year]}".to_date
+      filter_hash = { account: params[:account],
+                      category: params[:category] }
+      filter_hash.reject! {|_, v| v.empty?}
+      filter_hash.merge!({created_at: date..date.end_of_month})
+      @transactions = current_user.transactions.where(filter_hash)
+    end
   end
 
   def show
@@ -50,5 +60,13 @@ class TransactionsController < ApplicationController
   private
   def permitted_params
     params[:transaction].permit(:account_id, :category_id, :amount, :comment, :created_at)
+  end
+
+  def sort_column
+    Transaction.column_names.include?(params[:sort_by]) ? params[:sort_by] : 'created_at'
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:dir]) ? params[:dir] : 'asc'
   end
 end
