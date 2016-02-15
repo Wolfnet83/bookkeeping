@@ -3,14 +3,14 @@
     = form_tag transactions_path, method: 'get', class: 'form-horizontal'
     .form-group
       .col-sm-2
-        = select_month(Date.today,{}, {class: 'form-control'})
+        = select_month(@date, {}, {class: 'form-control'})
       .col-sm-2
-        = select_year(Date.today,{}, {class: 'form-control'})
+        = select_year(@date, {}, {class: 'form-control'})
       .col-sm-3
-        = select_tag "account", options_from_collection_for_select(Account.all, 'id', 'name'),
+        = select_tag "account", options_from_collection_for_select(Account.all, 'id', 'name', params[:account]),
                               {include_blank: true, class: 'form-control'}
       .col-sm-3
-        = select_tag "category", options_from_collection_for_select(Category.all, 'id', 'name'),
+        = select_tag "category", options_from_collection_for_select(Category.all, 'id', 'name', params[:category]),
                                {include_blank:true, class: 'form-control'}
       .col-sm-2
         = submit_tag 'Filter', name: 'filter', class: 'btn btn-info'

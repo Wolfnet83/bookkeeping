@@ -3,16 +3,17 @@ class TransactionsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    if params[:filter].blank?
-      @transactions = current_user.transactions.in_current_month.order(sort_column + ' ' + sort_direction)
+    if params[:date].present?
+      @date = "#{params[:date][:month]}/#{params[:date][:year]}".to_date
     else
-      date = "#{params[:date][:month]}/#{params[:date][:year]}".to_date
-      filter_hash = { account: params[:account],
-                      category: params[:category] }
-      filter_hash.reject! {|_, v| v.empty?}
-      filter_hash.merge!({created_at: date..date.end_of_month})
-      @transactions = current_user.transactions.where(filter_hash)
+      @date = Date.today.beginning_of_month
     end
+    @transactions = current_user.transactions.where(nil)
+    filtering_params(params).each do |key, value|
+      @transactions = @transactions.public_send(key, value) if value.present?
+    end
+    @transactions = @transactions.in_date(@date)
+    @transactions = @transactions.order(sort_column + ' ' + sort_direction)
   end
 
   def show
@@ -68,5 +69,9 @@ class TransactionsController < ApplicationController
 
   def sort_direction
     %w[asc desc].include?(params[:dir]) ? params[:dir] : 'asc'
+  end
+
+  def filtering_params(params)
+    params.slice(:account, :category)
   end
 end
