@@ -9,6 +9,8 @@ ru:
     category: "Категория"
     categories: "Категории"
     name: "Наименование категории"
+    create: "Создать категорию"
+    income: "Доход"
   transaction:
     transactions: "Проводки"
     comment: "Комментарий"
@@ -21,7 +23,9 @@ ru:
     order: "Порядок"
   user:
     profile: "Профиль"
+    should_login: 'Вам необходимо войти для продолжения'
   common:
+    apply: "Применить"
     date: "Дата"
     settings: "Настройки"
     actions: "Действия"
@@ -33,3 +37,4 @@ ru:
     login: "Вход"
     logout: "Выход"
     save: "Сохранить"
+  hello: 'Приветствуем'

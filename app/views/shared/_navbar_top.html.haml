@@ -6,14 +6,11 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand
-        Home BookKeeper
+      = link_to 'Home BookKeeper', dashboard_path, class: 'navbar-brand'
 
     - if user_signed_in?
       #navbarCollapse.collapse.navbar-collapse
         %ul.nav.navbar-nav
-          -# %li{class: ("active" if current_page?(dashboard_path)) }
-          -#   =link_to "Dashboard", dashboard_path
           %li{class: ("active" if current_page?(transactions_path)) }
             = link_to t('transaction.transactions'), transactions_path
         %ul.nav.navbar-nav.navbar-right

@@ -13,4 +13,4 @@
         = select_tag "category", options_from_collection_for_select(Category.all, 'id', 'name', params[:category]),
                                {include_blank:true, class: 'form-control'}
       .col-sm-2
-        = submit_tag 'Filter', name: 'filter', class: 'btn btn-info'
+        = submit_tag t('common.apply'), name: 'filter', class: 'btn btn-info'

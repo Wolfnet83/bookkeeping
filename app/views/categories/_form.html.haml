@@ -1,10 +1,8 @@
-= form_for @category do |f|
+= simple_form_for @category do |f|
   .form-group
-    = f.label :name, 'Category Name'
-    = f.text_field :name, class: "form-control"
+    = f.input :name, label: t('category.name')
   .form-group
-    = f.check_box :category_type
-    Income
+    = f.input :category_type, as: :boolean, label: t('category.income')
   .form-group
-    = f.submit class: "btn btn-default"
-    = link_to 'Cancel', categories_path, class: "btn btn-default"
+    = f.button :submit, t('category.create')
+    = link_to t('common.cancel'), categories_path, class: "btn btn-default"
