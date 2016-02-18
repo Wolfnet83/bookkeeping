@@ -15,6 +15,8 @@ ru:
     transactions: "Проводки"
     comment: "Комментарий"
     amount: "Сумма"
+  transfer:
+    transfers: "Переводы"
   date:
     formats:
       long: "%B %d, %Y"

@@ -1,0 +1,26 @@
+= simple_form_for @transfer, html: {class: "form-horizontal"} do |f|
+  .form-group
+    .col-sm-2
+      = f.label :date, t('common.date')
+    .col-sm-8
+      = f.input :created_at, label: false, as: :date,
+                 order: [:day, :month, :year], class: "form-control"
+  .form-group
+    .col-sm-2
+      = f.label :from_account_id, t('transfer.from_account')
+    .col-sm-8
+      = f.input :from_account_id, collection: @accounts, label: false, include_blank: false
+  .form-group
+    .col-sm-2
+      = f.label :to_account_id, t('transfer.to_account')
+    .col-sm-8
+      = f.input :to_account_id, collection: @accounts, label: false, include_blank: false
+  .form-group
+    .col-sm-2
+      = f.label :amount, t('transfer.from_account')
+    .col-sm-8
+      = f.input :amount, label: false
+  .form-group
+    .col-sm-2
+      = f.button :submit, t('common.create')
+      = link_to t('common.cancel'), :back, class: 'btn btn-default'

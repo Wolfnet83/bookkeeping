@@ -13,6 +13,8 @@
         %ul.nav.navbar-nav
           %li{class: ("active" if current_page?(transactions_path)) }
             = link_to t('transaction.transactions'), transactions_path
+          %li{class: ("active" if current_page?(transfers_path)) }
+            = link_to t('transfer.transfers'), transfers_path
         %ul.nav.navbar-nav.navbar-right
           %li.dropdown{class: ("active" if current_page?(accounts_path)||current_page?(categories_path)) }
             %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown",

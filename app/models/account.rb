@@ -3,6 +3,8 @@ class Account < ActiveRecord::Base
   validates :funds, numericality: { greater_than_or_equal_to: 0 }
 
   has_many :transactions, dependent: :destroy
+  has_many :transfers, as: :from_account
+  has_many :transfers, as: :to_account
 
   def plus(amount)
     amount ||= 0

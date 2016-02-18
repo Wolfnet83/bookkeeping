@@ -43,6 +43,7 @@ class TransactionsController < ApplicationController
     @transaction= current_user.transactions.new(permitted_params)
     @categories  = current_user.categories.all
     @accounts    = current_user.accounts.all
+    binding.pry
     if @transaction.valid?
       @transaction.save
       redirect_to transactions_path

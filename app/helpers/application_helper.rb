@@ -16,8 +16,10 @@ module ApplicationHelper
   def sortable(column, title = nil)
     title ||= column.titleize
     direction = (column == sort_column && sort_direction == 'asc') ? 'desc' : 'asc'
-    params.merge!(sort_by: column, dir: direction)
-    link_to title, url_for(params)
+    new_params = {}
+    new_params.merge!(params)
+    new_params.merge!(sort_by: column, dir: direction)
+    link_to title, url_for(new_params)
   end
 
   def number_in_money(amount)

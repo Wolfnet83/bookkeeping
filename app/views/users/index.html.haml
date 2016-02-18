@@ -1,0 +1,22 @@
+%table.table
+  %tr
+    %th
+      = t('account.name')
+    %th
+      = t('account.funds')
+    %th
+      = t('common.actions')
+  - @accounts.each do |account|
+    %tr
+      %td
+        = account.name
+      %td
+        = number_in_money(account.funds)
+      %td
+        = link_to t('common.edit'), edit_account_path(account.id),
+                                    class: "btn btn-xs btn-default"
+        = link_to t('common.delete'), account_path(account.id),
+                            method: :delete, class: "btn btn-xs btn-danger",
+                            data: {confirm: t('common.sure')}
+
+= link_to t('common.create'), new_account_path, class: "btn btn-default"
