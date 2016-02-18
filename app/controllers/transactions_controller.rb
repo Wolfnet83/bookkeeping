@@ -35,14 +35,10 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    @categories  = current_user.categories.all
-    @accounts    = current_user.accounts.all
   end
 
   def create
     @transaction= current_user.transactions.new(permitted_params)
-    @categories  = current_user.categories.all
-    @accounts    = current_user.accounts.all
     if @transaction.valid?
       @transaction.save
       redirect_to transactions_path

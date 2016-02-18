@@ -1,13 +1,12 @@
 class TransfersController < ApplicationController
   helper_method :sort_column, :sort_direction
-  
+
   def index
     @transfers = current_user.transfers.all
   end
 
   def new
     @transfer = Transfer.new
-    @accounts = current_user.accounts.all
   end
 
   def create
@@ -19,6 +18,12 @@ class TransfersController < ApplicationController
       flash[:error] = @transfer.errors.full_messages
       render "new"
     end
+  end
+
+  def destroy
+    @transfer = current_user.transfers.find_by_id(params[:id])
+    @transfer.destroy
+    redirect_to transfers_path, notice: "Transfer successfully deleted"
   end
 
   private
