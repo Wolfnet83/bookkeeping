@@ -1,4 +1,5 @@
 class TransfersController < ApplicationController
+  before_action :find_transfer, only: [:destroy]
   helper_method :sort_column, :sort_direction
 
   def index
@@ -15,18 +16,20 @@ class TransfersController < ApplicationController
       @transfer.save
       redirect_to transfers_path
     else
-      flash[:error] = @transfer.errors.full_messages
       render "new"
     end
   end
 
   def destroy
-    @transfer = current_user.transfers.find_by_id(params[:id])
     @transfer.destroy
-    redirect_to transfers_path, notice: "Transfer successfully deleted"
+    redirect_to transfers_path, notice: t('transfer.deleted')
   end
 
   private
+  def find_transfer
+    @transfer = current_user.transfers.find_by_id(params[:id])
+  end
+
   def permitted_params
     params[:transfer].permit(:from_account_id, :to_account_id, :amount)
   end

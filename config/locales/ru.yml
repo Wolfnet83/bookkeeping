@@ -20,6 +20,7 @@ ru:
     deleted: "Транзакция удалена"
   transfer:
     transfers: "Переводы"
+    deleted: "Перевод удален"
   date:
     formats:
       long: "%B %d, %Y"
