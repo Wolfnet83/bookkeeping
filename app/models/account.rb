@@ -8,11 +8,11 @@ class Account < ActiveRecord::Base
 
   def plus(amount)
     amount ||= 0
-    update_attribute :funds, funds + amount
+    update_attributes(funds: funds + amount)
   end
 
   def minus(amount)
     amount ||= 0
-    update_attribute :funds, funds - amount
+    update_attributes(funds: funds - amount)
   end
 end

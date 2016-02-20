@@ -5,6 +5,7 @@ ru:
     name: "Наименование счета"
     initial_amount: 'Начальная сумма'
     funds: 'Остаток'
+    doesnt_enough_money: 'Не хватает денег на счете'
   category:
     category: "Категория"
     categories: "Категории"
@@ -15,6 +16,8 @@ ru:
     transactions: "Проводки"
     comment: "Комментарий"
     amount: "Сумма"
+    updated: "Транзакция успешно обновлена"
+    deleted: "Транзакция удалена"
   transfer:
     transfers: "Переводы"
   date:
