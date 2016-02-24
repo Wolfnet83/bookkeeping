@@ -14,9 +14,9 @@ class CategoriesController < ApplicationController
     params[:category][:category_type] == '1' ? @category.category_type = INCOME : @category.category_type = EXPENSE
     if @category.valid?
       @category.save
-      redirect_to categories_path, notice: "Category successfully created"
+      redirect_to categories_path, notice: t('category.created')
     else
-      flash[:alert] = "Category doesn't created"
+      flash[:alert] = t('category.not_created')
       render "new"
     end
   end
@@ -28,9 +28,9 @@ class CategoriesController < ApplicationController
   def update
     @category = current_user.categories.find_by_id(params[:id])
     if @category.update_attributes(permitted_params)
-      redirect_to categories_path, notice: "Category successfully updated"
+      redirect_to categories_path, notice: t('category.updated')
     else
-      flash[:alert] = "Category doesn't updated"
+      flash[:alert] = t('category.not_updated')
       render 'edit'
     end
   end
@@ -38,7 +38,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = current_user.categories.find_by_id(params[:id])
     @category.destroy
-    redirect_to categories_path, notice: "Category successfully deleted"
+    redirect_to categories_path, notice: t('category.deleted')
   end
 
   private

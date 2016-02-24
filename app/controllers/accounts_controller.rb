@@ -15,7 +15,7 @@ class AccountsController < ApplicationController
       @account.save
       redirect_to accounts_path, notice: t('account.created')
     else
-      flash[:error] = "Account doesn't created"
+      flash[:error] = t('account.not_created')
       render "new"
     end
   end
@@ -29,7 +29,7 @@ class AccountsController < ApplicationController
     if @account.update_attributes(permitted_params)
       redirect_to accounts_path, notice: t('account.updated')
     else
-      flash[:error] = "Account doesn't updated"
+      flash[:error] = t('account.not_updated')
       render "edit"
     end
   end
