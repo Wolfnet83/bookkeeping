@@ -6,11 +6,21 @@ class Transfer < ActiveRecord::Base
   belongs_to :from_account, class_name: 'Account'
   belongs_to :to_account, class_name: 'Account'
 
-  after_create :change_accounts_after_create
+  after_create  :change_accounts_after_create
+  after_destroy :affect_to_accounts_after_deletion
 
   def change_accounts_after_create
-    from_account.minus(amount)
-    to_account.plus(amount)
+    ActiveRecord::Base.transaction do
+      from_account.minus(amount)
+      to_account.plus(amount)
+    end
+  end
+
+  def affect_to_accounts_after_deletion
+    ActiveRecord::Base.transaction do
+      from_account.plus(amount)
+      to_account.minus(amount)
+    end
   end
 
   private

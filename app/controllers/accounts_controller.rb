@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @accounts = current_user.accounts.all
+    @accounts = current_user.accounts.order(:name)
   end
 
   def new
@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
     @account = current_user.accounts.new(permitted_params)
     if @account.valid?
       @account.save
-      redirect_to accounts_path, notice: "Account successfully created"
+      redirect_to accounts_path, notice: t('account.created')
     else
       flash[:error] = "Account doesn't created"
       render "new"
@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
   def update
     @account = current_user.accounts.find_by_id(params[:id])
     if @account.update_attributes(permitted_params)
-      redirect_to accounts_path, notice: "Account updated successfully"
+      redirect_to accounts_path, notice: t('account.updated')
     else
       flash[:error] = "Account doesn't updated"
       render "edit"
@@ -37,7 +37,7 @@ class AccountsController < ApplicationController
   def destroy
     @account = current_user.accounts.find_by_id(params[:id])
     @account.destroy
-    redirect_to accounts_path, notice: "Account successfully deleted"
+    redirect_to accounts_path, notice: t('account.deleted')
   end
 
   private

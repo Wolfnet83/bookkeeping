@@ -6,6 +6,9 @@ ru:
     initial_amount: 'Начальная сумма'
     funds: 'Остаток'
     doesnt_enough_money: 'Не хватает денег на счете'
+    created: "Счет успешно создан"
+    updated: "Счет успешно обновлен"
+    deleted: "Счет успешно удален"
   category:
     category: "Категория"
     categories: "Категории"

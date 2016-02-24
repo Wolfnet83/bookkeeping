@@ -21,8 +21,12 @@ class TransfersController < ApplicationController
   end
 
   def destroy
-    @transfer.destroy
-    redirect_to transfers_path, notice: t('transfer.deleted')
+    if @transfer.valid?
+      @transfer.destroy
+      redirect_to transfers_path, notice: t('transfer.deleted')
+    else
+      redirect_to transfers_path, notice: t('account.doesnt_enough_money')
+    end
   end
 
   private

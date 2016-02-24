@@ -21,8 +21,6 @@
       %td
         = number_in_money(transfer.amount)
       %td
-        = link_to t('common.edit'), edit_transfer_path(transfer.id),
-                                    class: "btn btn-xs btn-default"
         = link_to t('common.delete'), transfer_path(transfer.id),
                             method: :delete, class: "btn btn-xs btn-danger",
                             data: {confirm: t('common.sure')}

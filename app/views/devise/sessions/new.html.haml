@@ -1,14 +1,12 @@
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .col-sm-6.col-sm-offset-3
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .col-sm-4.col-sm-offset-4
     .form-group
-      = f.label :email
-      = f.email_field :email, autofocus: true, class: "form-control"
+      -# = f.label :email
+      = f.input :email, as: :email, autofocus: true, label: false, placeholder: "Email"
     .form-group
-      = f.label :password
-      = f.password_field :password, autocomplete: "off", class: "form-control"
+      = f.input :password, as: :password, autocomplete: "off", label: false, placeholder: "Password"
     - if devise_mapping.rememberable?
       .form-group
-        = f.check_box :remember_me
-        = f.label :remember_me
+        = f.input :remember_me, as: :boolean, inline_label: t('devise.sessions.remember_me')
     .form-group
-      = f.submit "Log in", class: "btn btn-default"
+      = f.button :submit, t('devise.sessions.sign_in')

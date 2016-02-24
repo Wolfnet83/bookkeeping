@@ -4,11 +4,12 @@ class Transaction < ActiveRecord::Base
   belongs_to :user
 
   validates :account_id, :category_id, :user_id, presence: true
-  validates :amount, presence: true, numericality: { greater_than_or_equal_to: 1}
-  validate :check_needed_funds_on_account
+  validates :amount, presence: true, numericality: { greater_than_or_equal_to: 0.01}
+  validate  :check_needed_funds_on_account
 
-  after_create :affect_to_accounts_after_creation
+  after_create  :affect_to_accounts_after_creation
   after_destroy :affect_to_accounts_after_deletion
+  after_update  :affect_to_accounts_after_update
 
   scope :in_current_month, -> { where(created_at: Date.today.beginning_of_month..Date.today.end_of_month)}
   scope :in_date, -> (date) { where(created_at: date..date.end_of_month)}
@@ -21,6 +22,21 @@ class Transaction < ActiveRecord::Base
 
   def affect_to_accounts_after_deletion
     category.income? ? account.minus(amount) : account.plus(amount)
+  end
+
+  def affect_to_accounts_after_update
+    if account_id_was != account_id
+      account_was = Account.find_by_id(account_id_was)
+    else
+      account_was = account
+    end
+    if category.income?
+      account_was.minus(amount_was)
+      account.plus(amount)
+    else
+      account_was.plus(amount_was)
+      account.minus(amount)
+    end
   end
 
   private
