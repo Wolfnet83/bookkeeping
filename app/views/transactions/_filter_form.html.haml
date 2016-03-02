@@ -3,7 +3,7 @@
     = form_tag transactions_path, method: 'get', class: 'form-horizontal'
     .form-group
       .col-sm-2
-        = select_month(@date, {}, {class: 'form-control'})
+        = select_month(@date, {use_month_names: t('date.singular_month_names')}, {class: 'form-control'})
       .col-sm-2
         = select_year(@date, {}, {class: 'form-control'})
       .col-sm-3
