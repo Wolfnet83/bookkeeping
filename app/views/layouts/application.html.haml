@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}  
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
     %title Bookkeeping
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
@@ -12,3 +12,10 @@
     .container
       = flash_messages
       = yield
+
+    .footer
+      .container
+        -# .col-sm-2.col-sm-offset-5
+        %p.text-muted.text-center
+          copyright 2016 -
+          = Date.current.year
