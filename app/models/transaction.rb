@@ -41,6 +41,8 @@ class Transaction < ActiveRecord::Base
 
   private
   def check_needed_funds_on_account
-    errors.add(:account, I18n::t('account.doesnt_enough_money')) if (account.funds - amount) < 0
+    unless category.income?
+      errors.add(:account, I18n::t('account.doesnt_enough_money')) if (account.funds - amount) < 0
+    end
   end
 end
