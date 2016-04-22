@@ -1,5 +1,6 @@
 class Transfer < ActiveRecord::Base
-  validates :from_account_id, :to_account_id, presence: true
+  validates :from_account_id, :to_account_id, :user, presence: true
+  validates :amount, presence: true, numericality: { greater_than_or_equal_to: 0.01}
   validate  :check_needed_funds_on_account
 
   belongs_to :user
@@ -25,6 +26,7 @@ class Transfer < ActiveRecord::Base
 
   private
   def check_needed_funds_on_account
+    return if from_account.nil? || amount.nil?
     errors.add(:from_account, I18n::t('account.doesnt_enough_money')) if (from_account.funds - amount) < 0
   end
 end
