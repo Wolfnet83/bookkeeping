@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :accounts
   resources :categories
   resources :transfers
+  resources :currencies
 
   root 'dashboard#index'
 end
