@@ -1,0 +1,22 @@
+%table.table
+  %tr
+    %th
+      = t('currency.name')
+    %th
+      = t('currency.abbr_name')
+    %th
+      = t('common.actions')
+  - @currencies.each do |currency|
+    %tr
+      %td
+        = currency.name
+      %td
+        = currency.abbr_name
+      %td
+        = link_to t('common.edit'), edit_currency_path(currency.id),
+                                    class: "btn btn-xs btn-default"
+        = link_to t('common.delete'), currency_path(currency.id),
+                            method: :delete, class: "btn btn-xs btn-danger",
+                            data: {confirm: t('common.sure')}
+
+= link_to t('common.create'), new_currency_path, class: "btn btn-default"

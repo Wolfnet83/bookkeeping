@@ -1,0 +1,8 @@
+= simple_form_for @currency do |f|
+  .form-group
+    = f.input :name, label: t('currency.name')
+  .form-group
+    = f.input :abbr_name, label: t('currency.abbr_name')
+  .form-group
+    = f.button :submit, t("common.create")
+    = link_to t('common.cancel'), :back, class: "btn btn-default"
