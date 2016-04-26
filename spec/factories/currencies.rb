@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :currency do
-    name "MyString"
-    abbr_name "MyString"
+    name "Dollar US"
+    abbr_name "USD"
   end
 end
