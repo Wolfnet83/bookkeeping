@@ -42,6 +42,6 @@ class AccountsController < ApplicationController
 
   private
   def permitted_params
-    params[:account].permit(:name, :funds)
+    params[:account].permit(:name, :funds, :currency_id)
   end
 end

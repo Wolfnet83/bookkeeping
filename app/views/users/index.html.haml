@@ -11,7 +11,7 @@
       %td
         = account.name
       %td
-        = number_in_money(account.funds)
+        = number_in_money(account, account.funds)
       %td
         = link_to t('common.edit'), edit_account_path(account.id),
                                     class: "btn btn-xs btn-default"

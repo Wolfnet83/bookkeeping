@@ -19,7 +19,7 @@
       %td
         = transfer.to_account.name
       %td
-        = number_in_money(transfer.amount)
+        = number_in_money(transfer.from_account, transfer.amount)
       %td
         = link_to t('common.delete'), transfer_path(transfer.id),
                             method: :delete, class: "btn btn-xs btn-danger",

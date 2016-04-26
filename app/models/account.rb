@@ -5,7 +5,8 @@ class Account < ActiveRecord::Base
   has_many :transactions, dependent: :destroy
   has_many :transfers, as: :from_account
   has_many :transfers, as: :to_account
-  has_one  :currency
+  
+  belongs_to  :currency
 
   def plus(amount)
     amount ||= 0

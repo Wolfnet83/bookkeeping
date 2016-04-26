@@ -13,7 +13,7 @@
           %td
             = account.name
           %td
-            = number_in_money(account.funds)
+            = number_in_money(account, account.funds)
 .col-md-4
   .well
     - unless user_signed_in?

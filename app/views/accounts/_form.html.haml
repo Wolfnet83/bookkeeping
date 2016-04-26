@@ -4,5 +4,7 @@
   .form-group
     = f.input :funds, label: t('account.initial_amount')
   .form-group
+    = f.association :currency, label: t('currency.currency')
+  .form-group
     = f.button :submit, t("common.create")
     = link_to t('common.cancel'), :back, class: "btn btn-default"
