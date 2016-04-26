@@ -20,6 +20,20 @@ class CurrenciesController < ApplicationController
     end
   end
 
+  def edit
+    @currency = Currency.find_by_id(params[:id])
+  end
+
+  def update
+    @currency = Currency.find_by_id(params[:id])
+    if @currency.update_attributes(permitted_params)
+      redirect_to currencies_path, notice: t('currency.updated')
+    else
+      flash[:error] = t('currency.not_updated')
+      render "edit"
+    end
+  end
+
   def destroy
     @currency = Currency.find_by_id(params[:id])
     @currency.destroy
