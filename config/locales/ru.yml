@@ -31,6 +31,15 @@ ru:
   transfer:
     transfers: "Переводы"
     deleted: "Перевод удален"
+  currency:
+    currency:   "Валюта"
+    currencies: "Валюты"
+    name: "Название валюты"
+    created: "Валюта создана"
+    not_created: "Валюта не создана"
+    abbr_name: "Обозначение"
+    updated: "Валюта успешно обновлена"
+    deleted: "Валюта удалена"
   date:
     formats:
       long: "%B %d, %Y"
