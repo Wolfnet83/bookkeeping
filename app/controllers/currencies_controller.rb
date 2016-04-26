@@ -20,6 +20,12 @@ class CurrenciesController < ApplicationController
     end
   end
 
+  def destroy
+    @currency = Currency.find_by_id(params[:id])
+    @currency.destroy
+    redirect_to currencies_path, notice: t('currency.deleted')
+  end
+
   private
   def permitted_params
     params[:currency].permit(:name, :abbr_name)
