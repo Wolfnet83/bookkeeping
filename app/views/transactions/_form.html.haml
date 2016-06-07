@@ -9,7 +9,7 @@
     .col-sm-2
       = f.label :account_id, t('account.account')
     .col-sm-8
-      = f.association :account, label: false, include_blank: false
+      = f.association :account, collection: Account.order(:name), label: false, include_blank: false
   .form-group
     .col-sm-2
       = f.label :category_id, t('category.category')

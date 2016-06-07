@@ -60,7 +60,7 @@ class TransactionsController < ApplicationController
   end
 
   def sort_column
-    Transaction.column_names.include?(params[:sort_by]) ? params[:sort_by] : 'created_at'
+    Transaction.column_names.include?(params[:sort_by]) ? params[:sort_by] : 'created_at, id'
   end
 
   def sort_direction
