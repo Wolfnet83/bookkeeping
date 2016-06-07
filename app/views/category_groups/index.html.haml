@@ -1,0 +1,18 @@
+%table.table
+  %tr
+    %th
+      = t('name')
+    %th
+      = t('common.actions')
+  - @category_groups.each do |cg|
+    %tr
+      %td
+        = cg.name
+      %td
+        = link_to t('common.edit'), edit_category_group_path(cg.id),
+                                    class: "btn btn-xs btn-default"
+        = link_to t('common.delete'), category_group_path(cg.id),
+                            method: :delete, class: "btn btn-xs btn-danger",
+                            data: {confirm: t('common.sure')}
+
+= link_to t('common.create'), new_category_group_path, class: "btn btn-default"

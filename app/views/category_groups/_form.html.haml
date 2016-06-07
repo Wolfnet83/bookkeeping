@@ -1,0 +1,9 @@
+= simple_form_for @category_group do |f|
+  .form-group
+    = f.input :name, label: t('category_group.name')
+  .form-group
+    = label_tag :default_category, t('default')
+    = check_box_tag :default_category
+  .form-group
+    = f.button :submit, t("common.create")
+    = link_to t('common.cancel'), :back, class: "btn btn-default"

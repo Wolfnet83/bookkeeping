@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :transfers
   resources :currencies
+  resources :category_groups
 
   root 'dashboard#index'
 end

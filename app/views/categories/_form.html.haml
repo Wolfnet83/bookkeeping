@@ -2,6 +2,8 @@
   .form-group
     = f.input :name, label: t('category.name')
   .form-group
+    = f.association :category_group, label: t('category.name'), include_blank: false
+  .form-group
     = f.input :category_type, as: :boolean, label: t('category.income')
   .form-group
     = f.button :submit, t('category.create')

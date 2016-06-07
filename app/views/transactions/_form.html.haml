@@ -14,7 +14,7 @@
     .col-sm-2
       = f.label :category_id, t('category.category')
     .col-sm-8
-      = f.association :category, label: false, include_blank: false
+      = f.association :category, collection: CategoryGroup.order(:name), as: :grouped_select, group_method: :ordered_categories, label: false, include_blank: false
   .form-group
     .col-sm-2
       = f.label :amount, t('transaction.amount')

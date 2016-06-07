@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @categories = current_user.categories.order(category_type: :desc).order(:name)
+    @categories = current_user.categories.order('category_type DESC, name')
   end
 
   def new
@@ -43,6 +43,6 @@ class CategoriesController < ApplicationController
 
   private
   def permitted_params
-    params[:category].permit(:name, :category_type)
+    params[:category].permit(:name, :category_type, :category_group_id)
   end
 end

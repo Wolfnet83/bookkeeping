@@ -24,16 +24,19 @@
               %span.caret
             %ul.dropdown-menu
               %li
-                =link_to t('account.accounts'), accounts_path
+                = link_to t('account.accounts'), accounts_path
               %li
-                =link_to t('category.categories'), categories_path
-              %li
-                =link_to t('currency.currencies'), currencies_path
+                = link_to t('category.categories'), categories_path
               %li.divider{role: "separator"}
               %li
-                =link_to t('user.profile'), current_user
+                = link_to t('currency.currencies'), currencies_path
+              %li
+                = link_to t('category.groups'), category_groups_path
+              %li.divider{role: "separator"}
+              %li
+                = link_to t('user.profile'), current_user
           %li
-            =link_to t('common.logout'), destroy_user_session_path, method: :delete
+            = link_to t('common.logout'), destroy_user_session_path, method: :delete
     - else
       #navbarCollapse.collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-right
