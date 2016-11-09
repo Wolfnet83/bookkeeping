@@ -12,7 +12,7 @@ class Transaction < ActiveRecord::Base
   after_update  :affect_to_accounts_after_update
 
   scope :in_current_month, -> { where(created_at: Date.today.beginning_of_month-1.day..Date.today.end_of_month)}
-  scope :in_date, -> (date) { where(created_at: date-1.day..date.end_of_month)}
+  scope :in_date, -> (date) { where(created_at: date..date.end_of_month)}
   scope :account, -> (account_id) { where(account_id: account_id) }
   scope :category, -> (category_id) { where(category_id: category_id) }
 

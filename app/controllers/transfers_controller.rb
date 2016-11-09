@@ -3,7 +3,17 @@ class TransfersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @transfers = current_user.transfers.all
+    if params[:date].present?
+      @date = "#{params[:date][:month]}/#{params[:date][:year]}".to_date
+    else
+      @date = Date.today.beginning_of_month
+    end
+    @transfers = current_user.transfers.where(nil)
+    filtering_params(params).each do |key, value|
+      @transfers = @transfers.public_send(key, value) if value.present?
+    end
+    @transfers = @transfers.in_date(@date)
+    @transfers = @transfers.order(sort_column + ' ' + sort_direction)
   end
 
   def new
@@ -44,5 +54,9 @@ class TransfersController < ApplicationController
 
   def sort_direction
     %w[asc desc].include?(params[:dir]) ? params[:dir] : 'asc'
+  end
+
+  def filtering_params(params)
+    params.slice(:from_account, :to_account)
   end
 end
