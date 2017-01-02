@@ -5,7 +5,7 @@ class Account < ActiveRecord::Base
   has_many :transactions, dependent: :destroy
   has_many :transfers, as: :from_account
   has_many :transfers, as: :to_account
-  
+
   belongs_to  :currency
 
   def plus(amount)
@@ -16,5 +16,9 @@ class Account < ActiveRecord::Base
   def minus(amount)
     amount ||= 0
     update_attributes(funds: funds - amount)
+  end
+
+  def account_label
+    name.to_s + " (" + funds.to_s + ")"
   end
 end

@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :category_group do
-    name "MyString"
+    name "Test category group"
   end
 end
