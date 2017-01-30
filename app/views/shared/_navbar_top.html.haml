@@ -15,6 +15,15 @@
             = link_to t('transaction.transactions'), transactions_path
           %li{class: ("active" if current_page?(transfers_path)) }
             = link_to t('transfer.transfers'), transfers_path
+          %li.dropdown{class: ("active" if current_page?(reports_path))}
+            %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown",
+                               role: "button", "aria-haspopup" => "true",
+                               "aria-expanded" => "false"}
+              = t('Отчеты')
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                = link_to t('Затратные категории'), top_categories_path
         %ul.nav.navbar-nav.navbar-right
           %li.dropdown{class: ("active" if current_page?(accounts_path)||current_page?(categories_path)) }
             %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown",

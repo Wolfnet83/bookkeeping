@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :transfers
   resources :currencies
   resources :category_groups
+  resources :reports, only: [:index]
+
+  get 'reports/top_categories', :as => 'top_categories'
 
   root 'dashboard#index'
 end
