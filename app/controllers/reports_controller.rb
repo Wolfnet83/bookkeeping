@@ -18,4 +18,17 @@ class ReportsController < ApplicationController
                              .in_current_month
     end
   end
+  def top_categories_by_year
+    if params[:date].present?
+      @date = "01/#{params[:date][:year]}".to_date
+    else
+      @date = Date.today.beginning_of_year
+    end
+      @categories = Transaction.select('category_id as cat, sum(amount) as am')
+                           .joins(:category)
+                           .where("categories.category_type <> ?", INCOME)
+                           .group(:category_id)
+                           .order("sum(amount) desc")
+                           .in_year(@date)
+  end
 end

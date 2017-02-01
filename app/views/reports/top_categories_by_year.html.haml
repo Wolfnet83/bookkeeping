@@ -1,0 +1,25 @@
+.row
+  .col-md-8.col-md-offset-2
+    = form_tag top_categories_by_year_path, method: 'get', class: 'form-horizontal'
+    .form-group
+      .col-sm-2
+        = select_year(@date, {}, {class: 'form-control'})
+      .col-sm-2
+        = submit_tag t('common.apply'), name: 'filter', class: 'btn btn-info'
+.row
+  .col-md-8.col-md-offset-2
+    %table.table.table-condensed.table-striped.table-bordered
+      %tr
+        %th
+          = t('category.name')
+        %th
+          = t('transaction.amount')
+      - @categories.each do |category|
+        %tr
+          %td
+            = link_to Category.find(category.cat).name,
+                      transactions_path("date[month]" => @date.month,
+                                        "date[year]" => @date.year,
+                                        category: category.cat)
+          %td
+            = number_in_money(Account.first, category.am)

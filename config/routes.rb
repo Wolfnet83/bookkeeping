@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :reports, only: [:index]
 
   get 'reports/top_categories', :as => 'top_categories'
+  get 'reports/top_categories_by_year', as: :top_categories_by_year
 
   root 'dashboard#index'
 end
