@@ -1,43 +1,51 @@
-.col-md-4
-  .panel.panel-default
-    .panel-heading
-      Accounts
-    %table.table.table-condensed
-      %tr
-        %th
-          = t('account.name')
-        %th
-          = t('account.funds')
-      - @accounts.each do |account|
+.row
+  .col-md-4
+    .panel.panel-default
+      .panel-heading
+        Accounts
+      %table.table.table-condensed
         %tr
-          %td
-            = account.name
-          %td
-            = number_in_money(account, account.funds)
-.col-md-4
-  .well
-    - unless user_signed_in?
+          %th
+            = t('account.name')
+          %th
+            = t('account.funds')
+        - @accounts.each do |account|
+          %tr
+            %td
+              = account.name
+            %td
+              = number_in_money(account, account.funds)
+  .col-md-4
+    .well
+      - unless user_signed_in?
+        %h3
+          = t('user.should_login')
+      - else
+        %h3
+          = t('hello')
+          = current_user.email
+        %p
+          Welcome to your personal dashboard
+  .col-md-4
+    .well
       %h3
-        = t('user.should_login')
-    - else
-      %h3
-        = t('hello')
-        = current_user.email
-      %p
-        Welcome to your personal dashboard
-.col-md-4
-  .well
-    %h3
-      Top 10 Categories!
-    %table.table.table-condensed
-      %tr
-        %th
-          = t('category.name')
-        %th
-          = t('transaction.amount')
-      - @categories.each do |category|
+        Top 10 Categories!
+      %table.table.table-condensed
         %tr
-          %td
-            = Category.find(category.cat).name
-          %td
-            = number_in_money(Account.first, category.am)
+          %th
+            = t('category.name')
+          %th
+            = t('transaction.amount')
+        - @categories.each do |category|
+          %tr
+            %td
+              = Category.find(category.cat).name
+            %td
+              = number_in_money(Account.first, category.am)
+.row
+  .col-md-4
+    .well
+  .col-md-4
+    .well
+  .col-md-4
+    .well

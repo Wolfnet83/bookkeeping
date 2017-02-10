@@ -237,6 +237,7 @@ DEPENDENCIES
   haml-rails (~> 0.9)
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri (~> 1.6, >= 1.6.7.2)
   postgresql
   pry-rails
   puma
@@ -252,4 +253,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.13.6

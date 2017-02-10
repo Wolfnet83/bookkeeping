@@ -36,6 +36,7 @@ gem 'devise-i18n'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'nokogiri', '~> 1.6', '>= 1.6.7.2'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
