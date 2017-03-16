@@ -19,22 +19,22 @@ class Transfer < ActiveRecord::Base
 
   def change_accounts_after_create
     ActiveRecord::Base.transaction do
-        from_account.minus(amount, amount_in_dc)
+        from_account.minus(amount)
         if from_account.currency == Currency.default_currency
-          to_account.plus(amount/to_account.currency.exchange_rate, amount)
+          to_account.plus(amount/to_account.currency.exchange_rate)
         else
-          to_account.plus(amount*from_account.currency.exchange_rate, amount*from_account.currency.exchange_rate)
+          to_account.plus(amount*from_account.currency.exchange_rate)
         end
     end
   end
 
   def affect_to_accounts_after_deletion
     ActiveRecord::Base.transaction do
-      from_account.plus(amount, amount_in_dc)
+      from_account.plus(amount)
       if to_account.currency == Currency.default_currency
-        to_account.minus(amount_in_dc, amount_in_dc)
+        to_account.minus(amount_in_dc)
       else
-        to_account.minus(amount/to_account.currency.exchange_rate, amount_in_dc)
+        to_account.minus(amount/to_account.currency.exchange_rate)
       end
     end
   end
@@ -50,8 +50,10 @@ class Transfer < ActiveRecord::Base
   end
 
   def validate_default_currency_account
-    if from_account.currency != Currency.default_currency && to_account.currency != Currency.default_currency
-      errors.add(:account, I18n::t('account.currency_should_be_default'))
+    if from_account.present? && to_account.present?
+      if from_account.currency != Currency.default_currency && to_account.currency != Currency.default_currency
+        errors.add(:account, I18n::t('account.currency_should_be_default'))
+      end
     end
   end
 end

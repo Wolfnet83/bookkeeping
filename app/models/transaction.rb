@@ -7,9 +7,11 @@ class Transaction < ActiveRecord::Base
   validates :amount, presence: true, numericality: { greater_than_or_equal_to: 0.01}
   validate  :check_needed_funds_on_account
 
+  before_create :set_amount_in_default_currency
   after_create  :affect_to_accounts_after_creation
   after_destroy :affect_to_accounts_after_deletion
   after_update  :affect_to_accounts_after_update
+  after_save    :calculate_accounts_in_default_currency
 
   scope :in_current_month, -> { where(created_at: Date.today.beginning_of_month..Date.today.end_of_month)}
   scope :in_date, -> (date) { where(created_at: date..date.end_of_month)}
@@ -46,5 +48,13 @@ class Transaction < ActiveRecord::Base
     unless category.income?
       errors.add(:account, I18n::t('account.doesnt_enough_money')) if (account.funds - amount) < 0
     end
+  end
+
+  def calculate_accounts_in_default_currency
+    Account.calculate_default_currencies
+  end
+
+  def set_amount_in_default_currency
+    self.amount_in_dc = amount * account.currency.exchange_rate
   end
 end

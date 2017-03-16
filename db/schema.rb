@@ -17,13 +17,12 @@ ActiveRecord::Schema.define(version: 20170316070120) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "funds",        precision: 10, scale: 2, default: "0.0"
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
+    t.decimal  "funds",       precision: 10, scale: 2, default: "0.0"
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.integer  "user_id"
     t.integer  "currency_id"
-    t.decimal  "funds_in_dc",  precision: 10, scale: 2, default: "0.0"
-    t.decimal  "amount_in_dc", precision: 10, scale: 2, default: "0.0"
+    t.decimal  "funds_in_dc", precision: 10, scale: 2, default: "0.0"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -60,10 +59,11 @@ ActiveRecord::Schema.define(version: 20170316070120) do
     t.integer  "user_id"
     t.integer  "account_id"
     t.integer  "category_id"
-    t.decimal  "amount",      precision: 10, scale: 2, default: "0.0"
+    t.decimal  "amount",       precision: 10, scale: 2, default: "0.0"
     t.text     "comment"
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.decimal  "amount_in_dc", precision: 10, scale: 2, default: "0.0"
   end
 
   create_table "transfers", force: :cascade do |t|

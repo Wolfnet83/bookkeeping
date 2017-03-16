@@ -8,23 +8,21 @@ class Account < ActiveRecord::Base
 
   belongs_to  :currency
 
-  def plus(amount, amount_in_dc)
+  def plus(amount)
     amount ||= 0
-    update_attributes(funds: funds + amount,
-                      funds_in_dc: funds_in_dc + amount_in_dc)
+    update_attributes(funds: funds + amount)
   end
 
-  def minus(amount, amount_in_dc)
+  def minus(amount)
     amount ||= 0
-    update_attributes(funds: funds - amount,
-                      funds_in_dc: funds_in_dc - amount_in_dc)
+    update_attributes(funds: funds - amount)
   end
 
   def account_label
     name.to_s + " (" + funds.to_s + ")"
   end
 
-  def self.calculate_accounts_in_default_currency
+  def self.calculate_default_currencies
     Account.all.each do |account|
       if account.currency.present?
         account.funds_in_dc = account.funds * account.currency.exchange_rate
