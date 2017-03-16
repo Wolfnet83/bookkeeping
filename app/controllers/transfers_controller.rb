@@ -26,6 +26,7 @@ class TransfersController < ApplicationController
       @transfer.save
       redirect_to transfers_path
     else
+      flash[:error] = @transfer.errors.full_messages
       render "new"
     end
   end

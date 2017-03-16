@@ -11,6 +11,7 @@ ru:
     updated: "Счет успешно обновлен"
     not_updated: "Счет не обновлен"
     deleted: "Счет успешно удален"
+    currency_should_be_default: "Хотя бы один из аккаунтов должен быть в валюте по умолчанию"
   category:
     category: "Категория"
     categories: "Категории"

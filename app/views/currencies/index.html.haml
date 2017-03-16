@@ -5,13 +5,17 @@
     %th
       = t('currency.abbr_name')
     %th
+      = t('currency.rate')
+    %th
       = t('common.actions')
   - @currencies.each do |currency|
-    %tr
+    %tr{class: "#{currency.default_currency? ? "info":""}"}
       %td
         = currency.name
       %td
         = currency.abbr_name
+      %td
+        = currency.exchange_rate
       %td
         = link_to t('common.edit'), edit_currency_path(currency.id),
                                     class: "btn btn-xs btn-default"
@@ -19,4 +23,6 @@
                             method: :delete, class: "btn btn-xs btn-danger",
                             data: {confirm: t('common.sure')}
 
+= link_to t('currency.update_rates'), currencies_update_exchange_rates_path,
+                                      class: "btn btn-default"
 = link_to t('common.create'), new_currency_path, class: "btn btn-default"

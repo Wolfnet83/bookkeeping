@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   resources :accounts
   resources :categories
   resources :transfers
+
+  get 'currencies/update_exchange_rates'
   resources :currencies
+
   resources :category_groups
   resources :reports, only: [:index]
 

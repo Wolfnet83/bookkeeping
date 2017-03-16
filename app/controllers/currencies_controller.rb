@@ -2,7 +2,7 @@ class CurrenciesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @currencies = Currency.all
+    @currencies = Currency.all.order(:name)
   end
 
   def new
@@ -40,8 +40,13 @@ class CurrenciesController < ApplicationController
     redirect_to currencies_path, notice: t('currency.deleted')
   end
 
+  def update_exchange_rates
+    Currency.get_exchange_rates
+    redirect_to currencies_path, notice: t('currency.updated')
+  end
+
   private
   def permitted_params
-    params[:currency].permit(:name, :abbr_name)
+    params[:currency].permit(:name, :abbr_name, :exchange_rate, :default_currency)
   end
 end
