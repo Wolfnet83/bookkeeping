@@ -7,10 +7,10 @@ class Transaction < ActiveRecord::Base
   validates :amount, presence: true, numericality: { greater_than_or_equal_to: 0.01}
   validate  :check_needed_funds_on_account
 
-  before_create :set_amount_in_default_currency
   after_create  :affect_to_accounts_after_creation
   after_destroy :affect_to_accounts_after_deletion
   after_update  :affect_to_accounts_after_update
+  before_save   :set_amount_in_default_currency
   after_save    :calculate_accounts_in_default_currency
 
   scope :in_current_month, -> { where(created_at: Date.today.beginning_of_month..Date.today.end_of_month)}

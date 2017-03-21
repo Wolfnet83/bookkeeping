@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   before_action :authenticate_user!
   def index
-    @accounts = current_user.accounts.all
+    @accounts = current_user.accounts.order(:name)
     calculate_top_categories
   end
 

@@ -24,4 +24,7 @@
                                         "date[year]" => @date.year,
                                         category: category.cat)
           %td
-            = number_in_money(Account.first, category.am)
+            - if category.am_in_dc > 0
+              = number_in_money(Account.first, category.am_in_dc)
+            - else
+              = number_in_money(Account.first, category.am)

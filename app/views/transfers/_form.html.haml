@@ -9,12 +9,14 @@
     .col-sm-2
       = f.label :from_account_id, t('transfer.from_account')
     .col-sm-8
-      = f.association :from_account, label: false, include_blank: false
+      = f.association :from_account, label: false, label_method: :account_label,
+                      include_blank: false
   .form-group
     .col-sm-2
       = f.label :to_account_id, t('transfer.to_account')
     .col-sm-8
-      = f.association :to_account, label: false, include_blank: false
+      = f.association :to_account, label: false, label_method: :account_label,
+                      include_blank: false
   .form-group
     .col-sm-2
       = f.label :amount, t('common.amount')
