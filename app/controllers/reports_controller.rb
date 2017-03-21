@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
                              .joins(:category)
                              .where("categories.category_type <> ?", INCOME)
                              .group(:category_id)
-                             .order("sum(amount) desc")
+                             .order("sum(amount_in_dc) desc")
                              .in_date(@date)
     else
       @date = Date.today.beginning_of_month
@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
                              .joins(:category)
                              .where("categories.category_type <> ?", INCOME)
                              .group(:category_id)
-                             .order("sum(amount) desc")
+                             .order("sum(amount_in_dc) desc")
                              .in_current_month
     end
   end
@@ -28,7 +28,7 @@ class ReportsController < ApplicationController
                            .joins(:category)
                            .where("categories.category_type <> ?", INCOME)
                            .group(:category_id)
-                           .order("sum(amount) desc")
+                           .order("sum(amount_in_dc) desc")
                            .in_year(@date)
   end
 end
