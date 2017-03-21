@@ -19,7 +19,7 @@ class Currency < ActiveRecord::Base
       cur.exchange_rate = cur_hash[cur.abbr_name] if cur_hash[cur.abbr_name].present?
       cur.save!
     end
-    Account.calculate_accounts_in_default_currency
+    Account.calculate_default_currencies
   end
 
   def self.default_currency
