@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :transfer do
     association :from_account, factory: :funded_account
     association :to_account, factory: :funded_dc_account
