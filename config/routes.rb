@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :category_groups
   resources :reports, only: [:index]
 
+  resources :planned_fees
+
   get 'reports/top_categories', :as => 'top_categories'
   get 'reports/top_categories_by_year', as: :top_categories_by_year
 

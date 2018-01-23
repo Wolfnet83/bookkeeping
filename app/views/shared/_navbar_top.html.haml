@@ -15,6 +15,8 @@
             = link_to t('transaction.transactions'), transactions_path
           %li{class: ("active" if current_page?(transfers_path)) }
             = link_to t('transfer.transfers'), transfers_path
+          %li{class: ("active" if current_page?(planned_fees_path)) }
+            = link_to t('planned_fees'), planned_fees_path
           %li.dropdown{class: ("active" if current_page?(reports_path))}
             %a.dropdown-toggle{href: "#", "data-toggle" => "dropdown",
                                role: "button", "aria-haspopup" => "true",

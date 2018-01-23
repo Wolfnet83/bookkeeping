@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316070120) do
+ActiveRecord::Schema.define(version: 20180119101219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,12 +40,6 @@ ActiveRecord::Schema.define(version: 20170316070120) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "category_types", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "currencies", force: :cascade do |t|
     t.string   "name"
     t.string   "abbr_name"
@@ -53,6 +47,16 @@ ActiveRecord::Schema.define(version: 20170316070120) do
     t.datetime "updated_at",                       null: false
     t.float    "exchange_rate"
     t.boolean  "default_currency", default: false
+  end
+
+  create_table "planned_fees", force: :cascade do |t|
+    t.string   "name"
+    t.string   "amount"
+    t.boolean  "paid",       default: false
+    t.integer  "user_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_planned_fees_on_user_id", using: :btree
   end
 
   create_table "transactions", force: :cascade do |t|

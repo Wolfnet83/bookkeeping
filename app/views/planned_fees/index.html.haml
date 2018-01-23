@@ -1,0 +1,27 @@
+%table.table
+  %tr
+    %th
+      = t('planned_fee.name')
+    %th
+      = t('planned_fee.amount')
+    %th
+      = t('planned_fee.status')
+    %th
+      = t('common.actions')
+  - @planned_fees.each do |planned_fee|
+    %tr
+      %td
+        = best_in_place planned_fee, :name
+      %td
+        = best_in_place planned_fee, :amount
+      %td
+        %input.form-check-input{type: "checkbox"}
+          = best_in_place planned_fee, :paid, as: :checkbox
+      %td
+        -# = link_to t('common.edit'), edit_account_path(account.id),
+        -#                             class: "btn btn-xs btn-default"
+        -# = link_to t('common.delete'), account_path(account.id),
+        -#                     method: :delete, class: "btn btn-xs btn-danger",
+        -#                     data: {confirm: t('common.sure')}
+
+= link_to t('common.create'), new_planned_fee_path, class: "btn btn-default"
