@@ -17,11 +17,14 @@
       %td
         = time_tag(transfer.created_at.to_date)
       %td
-        = transfer.from_account.name.present? ? transfer.from_account.name : t('common.unknown')
+        - if transfer.from_account.present?
+          = transfer.from_account.name.present? ? transfer.from_account.name : t('common.unknown')
       %td
-        = transfer.to_account.name
+        - if transfer.to_account.present?
+          = transfer.to_account.name.present? ? transfer.to_account.name : t('common.unknown')
       %td
-        = number_in_money(transfer.from_account, transfer.amount)
+        - if transfer.from_account.present?
+          = number_in_money(transfer.from_account, transfer.amount)
       %td
         = link_to t('common.delete'), transfer_path(transfer.id),
                             method: :delete, class: "btn btn-xs btn-danger",
