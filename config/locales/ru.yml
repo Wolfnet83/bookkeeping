@@ -50,12 +50,21 @@ ru:
   user:
     profile: "Профиль"
     should_login: 'Вам необходимо войти для продолжения'
+  planned_fee:
+    planned_fees: "Запланированные траты"
+    unpaid: "Неоплачен"
+    paid: "Оплачен"
+    name: "Наименование счета"
+    status: "Статус"
+    created: "Запланированный расход добавлен"
+    deleted: "Запланированная трата успешно удалена"
   common:
     apply: "Применить"
     date: "Дата"
     settings: "Настройки"
     actions: "Действия"
     create: "Создать"
+    update: "Обновить"
     cancel: "Отмена"
     edit: "Изменить"
     delete: "Удалить"

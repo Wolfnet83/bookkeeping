@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   has_many :transactions
   has_many :transfers
   has_many :planned_fees
+  has_many :planned_fee_templates
 end

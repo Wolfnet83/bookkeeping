@@ -1,0 +1,28 @@
+%table.table
+  %tr
+    %th
+      = t('planned_fee.name')
+    %th
+      = t('planned_fee.amount')
+    %th
+      = t('planned_fee.currency')
+    %th
+      = t('common.actions')
+  - @planned_fee_templates.each do |planned_fee_template|
+    %tr
+      %td
+        = planned_fee_template.name
+      %td
+        = planned_fee_template.amount
+      %td
+        = planned_fee_template.currency.abbr_name if planned_fee_template.currency
+      %td
+        = link_to t('common.edit'), edit_planned_fee_template_path(planned_fee_template.id),
+                                    class: "btn btn-xs btn-default"
+        = link_to t('common.delete'), planned_fee_template_path(planned_fee_template.id),
+                            method: :delete, class: "btn btn-xs btn-danger",
+                            data: {confirm: t('common.sure')}
+
+= link_to t('common.create'), new_planned_fee_template_path, class: "btn btn-default"
+
+= link_to t('Create_for_month'), planned_fee_templates_create_for_month_path, class: "btn btn-default"

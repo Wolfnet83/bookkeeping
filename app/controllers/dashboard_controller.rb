@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
   def index
     @accounts = current_user.accounts.order(:name)
     calculate_top_categories
+    @planned_fees = current_user.planned_fees.this_month.unpaid
   end
 
   private

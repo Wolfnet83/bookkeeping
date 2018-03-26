@@ -5,25 +5,25 @@ class PlannedFeesController < ApplicationController
     @planned_fees = current_user.planned_fees.order(:name)
   end
 
-  # def new
-  #   @account = Account.new
-  # end
-  #
-  # def create
-  #   @account = current_user.accounts.new(permitted_params)
-  #   if @account.valid?
-  #     @account.save
-  #     redirect_to accounts_path, notice: t('account.created')
-  #   else
-  #     flash[:error] = t('account.not_created')
-  #     render "new"
-  #   end
-  # end
-  #
-  # def edit
-  #   @account = current_user.accounts.find_by_id(params[:id])
-  # end
-  #
+  def new
+    @planned_fee = PlannedFee.new(currency_id: Currency.default_currency.id)
+  end
+  
+  def create
+    @planned_fee = current_user.planned_fees.new(permitted_params)
+    if @planned_fee.valid?
+      @planned_fee.save
+      redirect_to planned_fees_path, notice: t('planned_fee.created')
+    else
+      flash[:error] = t('planned_fee.not_created')
+      render "new"
+    end
+  end
+  
+  def edit
+    @planned_fee = current_user.planned_fees.find_by_id(params[:id])
+  end
+  
   def update
     @planned_fee = current_user.planned_fees.find_by_id(params[:id])
     respond_to do |format|
@@ -35,22 +35,16 @@ class PlannedFeesController < ApplicationController
         format.json { respond_with_bip(@planned_fee) }
       end
     end
-    # if @planned_.update_attributes(permitted_params)
-    #   redirect_to accounts_path, notice: t('account.updated')
-    # else
-    #   flash[:error] = t('account.not_updated')
-    #   render "edit"
-    # end
   end
-  #
-  # def destroy
-  #   @account = current_user.accounts.find_by_id(params[:id])
-  #   @account.destroy
-  #   redirect_to accounts_path, notice: t('account.deleted')
-  # end
-  #
+  
+  def destroy
+    @planned_fee = current_user.planned_fees.find_by_id(params[:id])
+    @planned_fee.destroy
+    redirect_to planned_fees_path, notice: t('planned_fee.deleted')
+  end
+  
   private
   def permitted_params
-    params[:planned_fee].permit(:name, :amount, :paid)
+    params[:planned_fee].permit(:name, :amount, :currency_id, :status)
   end
 end

@@ -42,3 +42,21 @@
               = Category.find(category.cat).name
             %td
               = number_in_money(Account.first, category.am)
+
+.row
+  .col-md-4
+    .panel.panel-default
+      .panel-heading
+        Planned fees
+      %table.table.table-condensed
+        %tr
+          %th
+            = t('planned_fee.name')
+          %th
+            = t('transaction.amount')
+        - @planned_fees.each do |planned_fee|
+          %tr
+            %td
+              = planned_fee.name
+            %td
+              = planned_fee.amount

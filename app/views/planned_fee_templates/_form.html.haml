@@ -1,0 +1,10 @@
+= simple_form_for @planned_fee_template do |f|
+  .form-group
+    = f.input :name, label: t('planned_fee.name')
+  .form-group
+    = f.input :amount, label: t('planned_fee.amount')
+  .form-group
+    = f.association :currency, label: t('currency.currency')
+  .form-group
+    = f.button :submit, (current_page?(new_planned_fee_template_path) ? t("common.create") : t("common.update"))
+    = link_to t('common.cancel'), :back, class: "btn btn-default"
