@@ -33,6 +33,11 @@
               = planned_fee.name
             %td
               = number_in_money(planned_fee.currency, planned_fee.amount)
+        %tr.active
+          %td.text-right
+            Итого:
+          %td
+            = number_in_money(Currency.default_currency, @calculated_planned_fees_amount)
   .col-md-4
     .panel.panel-default
       .panel-heading

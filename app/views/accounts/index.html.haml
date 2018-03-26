@@ -7,7 +7,7 @@
     %th
       = t('common.actions')
   - @accounts.each do |account|
-    %tr
+    %tr{ class: (account.active? ? "" : "danger") }
       %td
         = account.name
       %td

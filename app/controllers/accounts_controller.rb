@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @accounts = current_user.accounts.order(:name)
+    @accounts = current_user.accounts.unscoped.order(active: :desc).order(:name)
   end
 
   def new
@@ -21,11 +21,11 @@ class AccountsController < ApplicationController
   end
 
   def edit
-    @account = current_user.accounts.find_by_id(params[:id])
+    @account = current_user.accounts.unscoped.find_by_id(params[:id])
   end
 
   def update
-    @account = current_user.accounts.find_by_id(params[:id])
+    @account = current_user.accounts.unscoped.find_by_id(params[:id])
     if @account.update_attributes(permitted_params)
       redirect_to accounts_path, notice: t('account.updated')
     else
@@ -42,6 +42,6 @@ class AccountsController < ApplicationController
 
   private
   def permitted_params
-    params[:account].permit(:name, :funds, :currency_id)
+    params[:account].permit(:name, :funds, :currency_id, :active)
   end
 end

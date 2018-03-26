@@ -10,4 +10,8 @@ class PlannedFee < ApplicationRecord
   def paid?
     status == PLANNED_FEE_STATUSES[:paid].to_i
   end
+
+  def amount_in_dc
+    amount * currency.exchange_rate
+  end
 end

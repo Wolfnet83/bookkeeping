@@ -8,6 +8,8 @@ class Account < ActiveRecord::Base
 
   belongs_to  :currency
 
+  default_scope { where(active: true) }
+
   def plus(amount)
     amount ||= 0
     update_attributes(funds: funds + amount)
