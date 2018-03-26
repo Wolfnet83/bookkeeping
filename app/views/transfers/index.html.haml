@@ -24,7 +24,7 @@
           = transfer.to_account.name.present? ? transfer.to_account.name : t('common.unknown')
       %td
         - if transfer.from_account.present?
-          = number_in_money(transfer.from_account, transfer.amount)
+          = number_in_money(transfer.from_account.currency, transfer.amount)
       %td
         = link_to t('common.delete'), transfer_path(transfer.id),
                             method: :delete, class: "btn btn-xs btn-danger",

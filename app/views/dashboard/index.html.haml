@@ -2,7 +2,8 @@
   .col-md-4
     .panel.panel-default
       .panel-heading
-        Accounts
+        %h4
+          = t('account.accounts')
       %table.table.table-condensed
         %tr
           %th
@@ -14,40 +15,12 @@
             %td
               = account.name
             %td
-              = number_in_money(account, account.funds)
-  .col-md-4
-    .well
-      - unless user_signed_in?
-        %h3
-          = t('user.should_login')
-      - else
-        %h3
-          = t('hello')
-          = current_user.email
-        %p
-          Welcome to your personal dashboard
-  .col-md-4
-    .well
-      %h3
-        Top 10 Categories!
-      %table.table.table-condensed
-        %tr
-          %th
-            = t('category.name')
-          %th
-            = t('transaction.amount')
-        - @categories.each do |category|
-          %tr
-            %td
-              = Category.find(category.cat).name
-            %td
-              = number_in_money(Account.first, category.am)
-
-.row
+              = number_in_money(account.currency, account.funds)
   .col-md-4
     .panel.panel-default
       .panel-heading
-        Planned fees
+        %h4
+          = t('planned_fee.planned_fees')
       %table.table.table-condensed
         %tr
           %th
@@ -59,4 +32,21 @@
             %td
               = planned_fee.name
             %td
-              = planned_fee.amount
+              = number_in_money(planned_fee.currency, planned_fee.amount)
+  .col-md-4
+    .panel.panel-default
+      .panel-heading
+        %h4
+          = t('common.top_10_categories')
+      %table.table.table-condensed
+        %tr
+          %th
+            = t('category.name')
+          %th
+            = t('transaction.amount')
+        - @categories.each do |category|
+          %tr
+            %td
+              = Category.find(category.cat).name
+            %td
+              = number_in_money(Currency.default_currency, category.am)

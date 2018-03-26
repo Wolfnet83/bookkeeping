@@ -25,6 +25,6 @@
                                         category: category.cat)
           %td
             - if category.am_in_dc > 0
-              = number_in_money(Account.first, category.am_in_dc)
+              = number_in_money(Currency.default_currency, category.am_in_dc)
             - else
-              = number_in_money(Account.first, category.am)
+              = number_in_money(Currency.default_currency, category.am)

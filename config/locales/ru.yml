@@ -72,6 +72,7 @@ ru:
     login: "Вход"
     logout: "Выход"
     save: "Сохранить"
+    top_10_categories: "Top 10 затратных категорий"
   hello: 'Приветствуем'
   activerecord:
     errors:

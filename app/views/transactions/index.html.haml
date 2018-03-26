@@ -24,7 +24,7 @@
           %td
             = transaction.category.name
           %td
-            = number_in_money(transaction.account, transaction.amount)
+            = number_in_money(transaction.account.currency, transaction.amount)
           %td
             = transaction.comment
           %td

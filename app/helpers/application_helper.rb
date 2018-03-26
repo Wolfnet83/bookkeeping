@@ -22,8 +22,8 @@ module ApplicationHelper
     link_to title, url_for(new_params)
   end
 
-  def number_in_money(account, amount)
-    account.currency.present? ? unit = account.currency.abbr_name : unit = 'MDL'
+  def number_in_money(currency, amount)
+    currency.present? ? unit = currency.abbr_name : unit = 'MDL'
     number_to_currency amount, unit: unit, format: '%n %u'
   end
 end
