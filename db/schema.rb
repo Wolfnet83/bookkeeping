@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180326084759) do
+ActiveRecord::Schema.define(version: 20180326125524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20180326084759) do
     t.integer  "currency_id"
     t.decimal  "funds_in_dc", precision: 10, scale: 2, default: "0.0"
     t.boolean  "active",                               default: true
+    t.boolean  "deposit",                              default: false
   end
 
   create_table "categories", force: :cascade do |t|

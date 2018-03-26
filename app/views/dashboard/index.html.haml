@@ -1,16 +1,29 @@
 .row
   .col-md-4
     .panel.panel-default
-      .panel-heading
-        %h4
-          = t('account.accounts')
+      .panel-heading.text-center
+        Текущие счета
       %table.table.table-condensed
         %tr
           %th
             = t('account.name')
           %th
             = t('account.funds')
-        - @accounts.each do |account|
+        - @current_accounts.each do |account|
+          %tr
+            %td
+              = account.name
+            %td
+              = number_in_money(account.currency, account.funds)
+      .panel-footer.text-right
+        Итого:
+        = number_in_money(Currency.default_currency, @current_accounts_funds)
+
+    .panel.panel-default
+      .panel-heading.text-center
+        Сберегательные счета
+      %table.table.table-condensed
+        - @deposit_accounts.each do |account|
           %tr
             %td
               = account.name
@@ -18,9 +31,8 @@
               = number_in_money(account.currency, account.funds)
   .col-md-4
     .panel.panel-default
-      .panel-heading
-        %h4
-          = t('planned_fee.planned_fees')
+      .panel-heading.text-center
+        = t('planned_fee.planned_fees')
       %table.table.table-condensed
         %tr
           %th
@@ -34,15 +46,13 @@
             %td
               = number_in_money(planned_fee.currency, planned_fee.amount)
         %tr.active
-          %td.text-right
-            Итого:
-          %td
-            = number_in_money(Currency.default_currency, @calculated_planned_fees_amount)
+      .panel-footer.text-right
+        Итого:
+        = number_in_money(Currency.default_currency, @calculated_planned_fees_amount)
   .col-md-4
     .panel.panel-default
-      .panel-heading
-        %h4
-          = t('common.top_10_categories')
+      .panel-heading.text-center
+        = t('common.top_10_categories')
       %table.table.table-condensed
         %tr
           %th

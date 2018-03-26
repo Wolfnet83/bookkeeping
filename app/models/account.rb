@@ -8,6 +8,8 @@ class Account < ActiveRecord::Base
 
   belongs_to  :currency
 
+  scope :deposit,-> { where(deposit: true) }
+  scope :not_deposit,-> { where(deposit: false) }
   default_scope { where(active: true) }
 
   def plus(amount)

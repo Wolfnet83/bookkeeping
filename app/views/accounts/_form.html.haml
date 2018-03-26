@@ -6,6 +6,8 @@
   .form-group
     = f.association :currency, label: t('currency.currency')
   .form-group
+    = f.input :deposit, label: t('account.deposit')
+  .form-group
     = f.input :active, label: t('account.active')
   .form-group
     = f.button :submit, (current_page?(new_account_path) ? t("common.create") : t("common.update"))
