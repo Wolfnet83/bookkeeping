@@ -6,9 +6,9 @@
   .form-group
     = f.association :currency, label: t('currency.currency')
   .form-group
-    = f.input :deposit, label: t('account.deposit')
+    = f.input :deposit, inline_label: t('account.deposit')
   .form-group
-    = f.input :active, label: t('account.active')
+    = f.input :active, inline_label: t('account.active')
   .form-group
     = f.button :submit, (current_page?(new_account_path) ? t("common.create") : t("common.update"))
     = link_to t('common.cancel'), :back, class: "btn btn-default"
