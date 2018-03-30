@@ -28,7 +28,7 @@ class PlannedFeesController < ApplicationController
     @planned_fee = current_user.planned_fees.find_by_id(params[:id])
     respond_to do |format|
       if @planned_fee.update_attributes(permitted_params)
-        format.html { redirect_to planned_fees_path, notice: "Planned fee updated" }
+        format.html { redirect_to planned_fees_path, notice: t('planned_fee.updated') }
         format.json { respond_with_bip(@planned_fee) }
       else
         format.html { render "edit" }

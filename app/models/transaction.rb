@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: transactions
+#
+#  id           :integer          not null, primary key
+#  user_id      :integer
+#  account_id   :integer
+#  category_id  :integer
+#  amount       :decimal(10, 2)   default(0.0)
+#  comment      :text
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  amount_in_dc :decimal(10, 2)   default(0.0)
+#
+
 class Transaction < ActiveRecord::Base
   belongs_to :account
   belongs_to :category
@@ -5,7 +20,7 @@ class Transaction < ActiveRecord::Base
 
   validates :account_id, :category_id, :user_id, presence: true
   validates :amount, presence: true, numericality: { greater_than_or_equal_to: 0.01}
-  validate  :check_needed_funds_on_account
+  validate  :check_needed_funds_on_account, on: :create
 
   after_create  :affect_to_accounts_after_creation
   after_destroy :affect_to_accounts_after_deletion

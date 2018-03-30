@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: transfers
+#
+#  id              :integer          not null, primary key
+#  from_account_id :integer
+#  to_account_id   :integer
+#  amount          :float
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  user_id         :integer
+#  amount_in_dc    :decimal(10, 2)   default(0.0)
+#
+
 require 'rails_helper'
 
 RSpec.describe Transfer, type: :model do

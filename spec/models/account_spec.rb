@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  funds       :decimal(10, 2)   default(0.0)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :integer
+#  currency_id :integer
+#  funds_in_dc :decimal(10, 2)   default(0.0)
+#  active      :boolean          default(TRUE)
+#  deposit     :boolean          default(FALSE)
+#
+
 require 'rails_helper'
 
 RSpec.describe Account, type: :model do

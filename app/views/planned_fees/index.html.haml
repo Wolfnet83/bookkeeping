@@ -4,6 +4,8 @@
     %th
       = t('planned_fee.name')
     %th
+      = t('common.month')
+    %th
       = t('transaction.amount')
     %th
       = t('currency.currency')
@@ -15,6 +17,8 @@
     %tr{class: (planned_fee.paid? ? "success" : "danger") }
       %td
         = planned_fee.name
+      %td
+        = I18n.t("date.singular_month_names")[planned_fee.created_at.month]
       %td
         = planned_fee.amount
       %td

@@ -19,7 +19,7 @@ class DashboardController < ApplicationController
   end
 
   def calculate_planned_fees
-    @planned_fees = current_user.planned_fees.this_month.unpaid
+    @planned_fees = current_user.planned_fees.unpaid
     @calculated_planned_fees_amount  = 0
     @planned_fees.each do |planned_fee|
       @calculated_planned_fees_amount += planned_fee.currency.default_currency? ? planned_fee.amount : planned_fee.amount_in_dc

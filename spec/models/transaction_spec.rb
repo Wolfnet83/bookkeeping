@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: transactions
+#
+#  id           :integer          not null, primary key
+#  user_id      :integer
+#  account_id   :integer
+#  category_id  :integer
+#  amount       :decimal(10, 2)   default(0.0)
+#  comment      :text
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  amount_in_dc :decimal(10, 2)   default(0.0)
+#
+
 require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do

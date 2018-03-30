@@ -6,7 +6,7 @@ class PlannedFeeTemplatesController < ApplicationController
   end
 
   def new
-    @planned_fee_template = PlannedFeeTemplate.new(curency_id: Currency.default_currency.id)
+    @planned_fee_template = PlannedFeeTemplate.new(currency_id: Currency.default_currency.id)
   end
   
   def create
@@ -28,7 +28,7 @@ class PlannedFeeTemplatesController < ApplicationController
     @planned_fee_template = current_user.planned_fee_templates.find_by_id(params[:id])
     respond_to do |format|
       if @planned_fee_template.update_attributes(permitted_params)
-        format.html { redirect_to planned_fee_templates_path, notice: "Planned fee updated" }
+        format.html { redirect_to planned_fee_templates_path, notice: t('planned_fee.updated') }
         format.json { respond_with_bip(@planned_fee_template) }
       else
         format.html { render "edit" }
@@ -41,7 +41,7 @@ class PlannedFeeTemplatesController < ApplicationController
   def destroy
     @planned_fee_template = current_user.planned_fee_templates.find_by_id(params[:id])
     @planned_fee_template.destroy
-    redirect_to planned_fee_templates_path, notice: t('planned_fee_template.deleted')
+    redirect_to planned_fee_templates_path, notice: t('planned_fee.deleted')
   end
 
   def create_for_month

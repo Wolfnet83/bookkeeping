@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: accounts
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  funds       :decimal(10, 2)   default(0.0)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :integer
+#  currency_id :integer
+#  funds_in_dc :decimal(10, 2)   default(0.0)
+#  active      :boolean          default(TRUE)
+#  deposit     :boolean          default(FALSE)
+#
+
 class Account < ActiveRecord::Base
   validates :name, :currency_id, presence: true
   validates :funds, numericality: { greater_than_or_equal_to: 0 }

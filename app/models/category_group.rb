@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: category_groups
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class CategoryGroup < ActiveRecord::Base
   has_many :categories
   after_destroy :reset_categories
