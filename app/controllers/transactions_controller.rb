@@ -4,16 +4,22 @@ class TransactionsController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
+    @transactions = current_user.transactions.where(nil)
     if params[:date].present?
-      @date = "#{params[:date][:month]}/#{params[:date][:year]}".to_date
+      if params[:date][:month].present?
+        @date = "#{params[:date][:month]}/#{params[:date][:year]}".to_date
+        @transactions = @transactions.in_date(@date)
+      else
+        @date = "01/#{params[:date][:year]}".to_date
+        @transactions = @transactions.in_year(@date)
+      end
     else
       @date = Date.today.beginning_of_month
+      @transactions = @transactions.in_date(@date)
     end
-    @transactions = current_user.transactions.where(nil)
     filtering_params(params).each do |key, value|
       @transactions = @transactions.public_send(key, value) if value.present?
     end
-    @transactions = @transactions.in_date(@date)
     @transactions = @transactions.order(sort_column + ' ' + sort_direction)
   end
 

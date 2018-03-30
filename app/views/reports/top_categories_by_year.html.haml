@@ -18,8 +18,7 @@
         %tr
           %td
             = link_to Category.find(category.cat).name,
-                      transactions_path("date[month]" => @date.month,
-                                        "date[year]" => @date.year,
+                      transactions_path("date[year]" => @date.year,
                                         category: category.cat)
           %td
             = number_in_money(Currency.default_currency, category.am_in_dc)

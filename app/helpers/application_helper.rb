@@ -17,7 +17,7 @@ module ApplicationHelper
     title ||= column.titleize
     direction = (column == sort_column && sort_direction == 'asc') ? 'desc' : 'asc'
     new_params = {}
-    new_params.merge!(params.to_h)
+    new_params.merge!(params.permit!.to_h)
     new_params.merge!(sort_by: column, dir: direction)
     link_to title, url_for(new_params)
   end
