@@ -9,7 +9,7 @@
     .col-sm-2
       = f.label :account_id, t('account.account')
     .col-sm-8
-      = f.association :account, collection: Account.order(:name),label_method: :account_label,
+      = f.association :account, collection: Account.not_deposit.order(:name),label_method: :account_label,
                       label: false, include_blank: false
   .form-group
     .col-sm-2

@@ -16,13 +16,9 @@
 //= require bootstrap-sprockets
 //= require jquery
 //= require best_in_place
+//= require planned_fees
+
 
 $(document).ready(function() {
-  /* Activating Best In Place */
   jQuery(".best_in_place").best_in_place();
-
-//   
-  $('.best_in_place').bind("ajax:success", function () { $(this).closest('td').effect('highlight'); });
-
 });
-

@@ -2,7 +2,7 @@ class PlannedFeesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @planned_fees = current_user.planned_fees.order(:name)
+    @planned_fees = current_user.planned_fees.order(:status, :name)
   end
 
   def new
