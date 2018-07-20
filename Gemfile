@@ -41,6 +41,9 @@ gem 'nokogiri', '~> 1.6', '>= 1.6.7.2'
 
 gem 'best_in_place', '~> 3.0.1'
 
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

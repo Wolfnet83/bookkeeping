@@ -21,6 +21,8 @@ class PlannedFee < ApplicationRecord
   scope :this_month,-> { where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_month) }
   scope :unpaid,-> { where(status: PLANNED_FEE_STATUSES[:unpaid]) }
   
+  self.per_page = 10
+
   def paid?
     status == PLANNED_FEE_STATUSES[:paid].to_i
   end

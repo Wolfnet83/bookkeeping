@@ -33,3 +33,5 @@
                             data: {confirm: t('common.sure')}
 
 = link_to t('common.create'), new_planned_fee_path, class: "btn btn-default"
+.row
+  = will_paginate @planned_fees, renderer: BootstrapPagination::Rails
