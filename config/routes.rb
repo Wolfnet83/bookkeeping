@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show, :update]
 
+  namespace :api, defaults: { format: 'json' } do
+    scope module: :v1 do 
+      resources :currencies
+    end
+  end
+
   get 'dashboard/index', :as => 'dashboard'
 
   resources :transactions
