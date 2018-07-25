@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
     scope module: :v1 do 
+      post 'get_token' => 'authentication#get_token'
       resources :currencies
     end
   end

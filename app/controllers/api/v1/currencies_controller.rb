@@ -2,11 +2,11 @@ module Api
   module V1
     class CurrenciesController < ApplicationController
 
-      before_action :authenticate_user!
+      before_action :authenticate_request!
       respond_to :json
 
       def index
-        respond_with current_user.currency.all
+        respond_with Currency.all
       end
     end
   end

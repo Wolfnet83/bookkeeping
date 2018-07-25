@@ -34,6 +34,7 @@ gem 'puma'
 
 gem 'devise'
 gem 'devise-i18n'
+gem 'jwt'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
