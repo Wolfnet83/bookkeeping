@@ -3,6 +3,6 @@ FactoryBot.define do
     association :account, factory: :funded_account
     category
     user
-    amount 5
+    amount { 5 }
   end
 end
