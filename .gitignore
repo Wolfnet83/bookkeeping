@@ -18,3 +18,6 @@
 /tmp
 /config/database.yml
 /vscode
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
