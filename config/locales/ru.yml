@@ -61,7 +61,8 @@ ru:
     deleted: "Запланированный расход успешно удален"
     updated: "Запланированный расход обновлен"
     templates: "Шаблоны расходов"
-    create_for_month: "Создать на месяц"
+    create_for_month: "Создать расходы на месяц"
+    create: "Создать шаблон расхода"
   common:
     apply: "Применить"
     date: "Дата"
@@ -78,6 +79,7 @@ ru:
     save: "Сохранить"
     top_10_categories: "Top 10 затратных категорий"
     month: "Месяц"
+    sum: "Общая сумма:"
   hello: 'Приветствуем'
   activerecord:
     errors:

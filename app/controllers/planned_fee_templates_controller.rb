@@ -2,7 +2,9 @@ class PlannedFeeTemplatesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @planned_fee_templates = current_user.planned_fee_templates.order(:name)
+    pft = current_user.planned_fee_templates
+    @planned_fee_templates = pft.order(:name)
+    @pft_sum = pft.map(&:amount).sum
   end
 
   def new
