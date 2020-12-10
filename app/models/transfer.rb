@@ -56,7 +56,7 @@ class Transfer < ActiveRecord::Base
   private
   def check_needed_funds_on_account
     return if from_account.nil? || amount.nil?
-    errors.add(:from_account, I18n::t('account.doesnt_enough_money')) if (from_account.funds - amount) <= 0
+    errors.add(:from_account, I18n::t('account.doesnt_enough_money')) if (from_account.funds - amount) < 0
   end
 
   def set_amount_in_default_currency
