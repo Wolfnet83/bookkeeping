@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.11.2"
+lock "~> 3.14.1"
 
 set :application, "bookkeeping"
 set :repo_url, "git@github.com:Wolfnet83/bookkeeping.git"
@@ -33,7 +33,7 @@ namespace :puma do
     end
   end
 
-  before :start, :make_dirs
+  # before :start, :make_dirs
 end
 
 namespace :deploy do
