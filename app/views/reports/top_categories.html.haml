@@ -28,3 +28,8 @@
               = number_in_money(Currency.default_currency, category.am_in_dc)
             - else
               = number_in_money(Currency.default_currency, category.am)
+      %tr
+        %td
+          %b Итого
+        %td
+          = number_in_money(Currency.default_currency, @total)
