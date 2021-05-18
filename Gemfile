@@ -37,7 +37,7 @@ gem 'devise-i18n'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'nokogiri', '~> 1.10'
+gem 'nokogiri', '~> 1.11'
 
 gem 'best_in_place', '~> 3.0.1'
 
