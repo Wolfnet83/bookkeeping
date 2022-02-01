@@ -1,4 +1,4 @@
-class CreatePlannedFees < ActiveRecord::Migration[5.0]
+class CreatePlannedFees < ActiveRecord::Migration[5.2]
   def change
     create_table :planned_fees do |t|
       t.string      :name

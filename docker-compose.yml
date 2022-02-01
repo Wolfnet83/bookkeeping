@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    command: bin/rails s -b 0.0.0.0
+    entrypoint: /usr/bin/entrypoint.sh
+    volumes:
+      - .:/bookkeeping
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    volumes:
+      - bookke_postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pg_pass
+
+volumes:
+  bookke_postgres:

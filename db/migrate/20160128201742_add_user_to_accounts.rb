@@ -1,4 +1,4 @@
-class AddUserToAccounts < ActiveRecord::Migration
+class AddUserToAccounts < ActiveRecord::Migration[5.2]
   def change
     add_column :accounts, :user_id, :integer
   end
