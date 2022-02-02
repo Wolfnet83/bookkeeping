@@ -51,24 +51,24 @@ ActiveRecord::Schema.define(version: 2018_03_26_125524) do
     t.boolean "default_currency", default: false
   end
 
-  create_table "planned_fee_templates", id: :serial, force: :cascade do |t|
+  create_table "planned_fee_templates", force: :cascade do |t|
     t.string "name"
     t.decimal "amount", precision: 10, scale: 2, default: "0.0"
     t.boolean "active", default: true
-    t.integer "currency_id"
-    t.integer "user_id"
+    t.bigint "currency_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["currency_id"], name: "index_planned_fee_templates_on_currency_id"
     t.index ["user_id"], name: "index_planned_fee_templates_on_user_id"
   end
 
-  create_table "planned_fees", id: :serial, force: :cascade do |t|
+  create_table "planned_fees", force: :cascade do |t|
     t.string "name"
     t.decimal "amount", precision: 10, scale: 2, default: "0.0"
     t.integer "status", limit: 2, default: 0
-    t.integer "currency_id"
-    t.integer "user_id"
+    t.bigint "currency_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["currency_id"], name: "index_planned_fees_on_currency_id"

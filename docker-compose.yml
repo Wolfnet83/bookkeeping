@@ -4,20 +4,22 @@ services:
     build: .
     command: bin/rails s -b 0.0.0.0
     entrypoint: /usr/bin/entrypoint.sh
+    stdin_open: true
+    tty: true
     volumes:
-      - .:/bookkeeping
+      - .:/bookke
     ports:
       - "3000:3000"
     depends_on:
       - db
 
   db:
-    image: postgres
+    image: postgres:11
     volumes:
-      - bookke_postgres:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: pg_pass
 
 volumes:
-  bookke_postgres:
+  postgres:
