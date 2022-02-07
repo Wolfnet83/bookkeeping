@@ -1,8 +1,9 @@
 FROM ruby:2.6.5
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+
 WORKDIR /bookke
-COPY Gemfile /bookke/Gemfile
-COPY Gemfile.lock /bookke/Gemfile.lock
+COPY Gemfile Gemfile.lock ./
+
 RUN bundle install
 
 COPY . .
