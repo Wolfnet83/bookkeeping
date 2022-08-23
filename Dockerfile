@@ -1,5 +1,7 @@
-FROM ruby:2.6.5
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+FROM ruby:2.6.5-alpine
+RUN apk update && apk upgrade\ 
+&& apk add --update --no-cache nodejs\
+postgresql-dev build-base tzdata
 
 WORKDIR /bookke
 COPY Gemfile Gemfile.lock ./
