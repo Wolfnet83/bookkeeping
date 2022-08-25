@@ -24,7 +24,7 @@ class Transaction < ActiveRecord::Base
 
   after_create  :affect_to_accounts_after_creation
   after_destroy :affect_to_accounts_after_deletion
-  after_update  :affect_to_accounts_after_update
+  before_update :affect_to_accounts_before_update
   before_save   :set_amount_in_default_currency
   after_save    :calculate_accounts_in_default_currency
 
@@ -42,7 +42,7 @@ class Transaction < ActiveRecord::Base
     category.income? ? account.minus(amount) : account.plus(amount)
   end
 
-  def affect_to_accounts_after_update
+  def affect_to_accounts_before_update
     if account_id_was != account_id
       account_was = Account.find_by_id(account_id_was)
     else
