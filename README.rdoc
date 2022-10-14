@@ -1,28 +1,33 @@
-== README
+# Bookkeeping site
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Start using docker
+```
+docker compose up
+```
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## Database 
+
+### Connect to database using psql
+```
+sudo -u postgres psql
+```
+
+### Dump database
+```
+sudo -u postgres pg_dump bookkeeping_prod > /home/ork/bookke_dump_13_10_2022
+```
+
+### Download database 
+```
+scp ork@78.47.113.149:/home/ork/bookke_dump_13_10_2022 ~/Downloads
+```
+
+### Restore database locally as dev
+```
+docker exec -i <db_container_name> psql -U postgres
+drop database bookkeeping_dev
+\q
+
+docker exec -i <db_container_name> psql -U postgres -d bookkeeping_dev < ~/Downloads/bookke_dump_13_10_2022
+```
