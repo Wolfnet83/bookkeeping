@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile.prod
+    command: bin/rails s -b 0.0.0.0
+    entrypoint: /usr/bin/entrypoint.sh
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/bookke
+    depends_on:
+      - db
+    deploy:
+      replicas: 2
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.web.rule=Host(`stage.volcov.info`)"
+      - "traefik.http.routers.web.entrypoints=http,https"
+      - "traefik.http.routers.web.tls=true"
+      - "traefik.http.routers.web.tls.certresolver=http"
+
+  db:
+    image: postgres:11
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pg_pass
+    restart: always
+    mem_limit: 512M
+
+volumes:
+  postgres:
