@@ -1,7 +1,10 @@
-version: "3.9"
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile_alpine
+      platforms:
+        - linux/amd64
     command: bin/rails s -b 0.0.0.0
     entrypoint: /usr/bin/entrypoint.sh
     stdin_open: true
