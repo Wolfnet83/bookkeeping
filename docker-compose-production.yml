@@ -1,5 +1,5 @@
 services:
-  web:
+  bookkeeping-web:
     build: 
       context: .
       dockerfile: Dockerfile.prod
@@ -14,9 +14,9 @@ services:
     deploy:
       replicas: 2
     restart: always
-    ports:
-      - "3000:3000"
-      
+    networks: 
+      - nginx-ingress
+      - bookke_net
 
   db:
     image: postgres:11
@@ -27,6 +27,8 @@ services:
       POSTGRES_PASSWORD: pg_pass
     restart: always
     mem_limit: 512M
+    networks: 
+      - bookke_net
 
 volumes:
   postgres:
@@ -35,3 +37,5 @@ networks:
   nginx-ingress:
     name: nginx-ingress
     external: true
+  bookke_net:
+    name: bookke_net
